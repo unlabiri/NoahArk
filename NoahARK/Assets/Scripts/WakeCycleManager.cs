@@ -13,7 +13,6 @@ public class WakeCycleManager : MonoBehaviour
     public event Action<int> OnYearChange;
     public event Action<float> OnWakeTick;
 
-    private bool _isInitialized = false;
     private void Awake()
     {
         State = new GameState();
@@ -32,14 +31,16 @@ public class WakeCycleManager : MonoBehaviour
     {
         if (State.wakePhase == WakePhase.Completed) return;
         Console.WriteLine(State.currentYear);
+        
         if (State.wakePhase == WakePhase.Sleeping)
         {
             State.sleepSecondsRemaining -= Time.deltaTime;
 
-            if(State.sleepSecondsRemaining <= 0)
+            if(State.sleepSecondsRemaining < 0)
             {
                 StartWakeCycle();
                 State.currentYear += 1;
+                Debug.Log(State.currentYear.GetType());
 
             }
         }
@@ -49,7 +50,7 @@ public class WakeCycleManager : MonoBehaviour
         }
         
 
-        if (State.wakeSecondsRemaining <= 0)
+        if (State.wakeSecondsRemaining < 0)
         {
             State.wakeSecondsRemaining = 0f;
             StartSleepCycle();
