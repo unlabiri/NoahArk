@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 773554733}
   - component: {fileID: 773554735}
   - component: {fileID: 773554734}
+  - component: {fileID: 773554736}
   m_Layer: 0
   m_Name: WakeText
   m_TagString: Untagged
@@ -299,8 +300,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sample text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 03eba5e7be5a6c24b9481470ab02252c, type: 2}
+  m_sharedMaterial: {fileID: 5948716526874890803, guid: 03eba5e7be5a6c24b9481470ab02252c,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -389,7 +391,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 5948716526874890803, guid: 03eba5e7be5a6c24b9481470ab02252c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -411,6 +413,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &773554736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773554732}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bc9e314ac1d3346a125bb6b3639162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wakeCycle: {fileID: 1706698989}
+  timeText: {fileID: 0}
+  phaseText: {fileID: 0}
 --- !u!1 &1706698987
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,8 +644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wakeCycle: {fileID: 1706698989}
-  timeText: {fileID: 0}
-  phaseText: {fileID: 0}
+  timeText: {fileID: 773554734}
+  phaseText: {fileID: 773554734}
 --- !u!65 &1881472420
 BoxCollider:
   m_ObjectHideFlags: 0

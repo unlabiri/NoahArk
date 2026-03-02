@@ -25,6 +25,7 @@ public class WakeCycleClockDisplay : MonoBehaviour
 
         float secondsRemaining;
         string label;
+        int year = s.currentYear;
 
         switch (s.wakePhase)
         {
@@ -49,7 +50,7 @@ public class WakeCycleClockDisplay : MonoBehaviour
         if(timeText != null)
         {
             string time = FormatMMSS(secondsRemaining);
-            timeText.text = $"{label} {time}";
+            timeText.text = $"{year} {label} {time}";
             
 
         }

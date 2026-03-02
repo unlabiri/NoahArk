@@ -9,9 +9,9 @@ public class WakeCycleManager : MonoBehaviour
     [SerializeField] private float sleepDurationSeconds = 10f;
     public GameState State { get; private set; }
 
-    public event Action<GameState> OnStateChange;
+    public event Action<WakePhase> OnStateChange;
     public event Action<int> OnYearChange;
-    public event Action<float> OnWakeTick;
+    public event Action<float> OnSecondsRemaining;
 
     private void Awake()
     {
@@ -29,9 +29,10 @@ public class WakeCycleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If you have completed the wake phase return the game is over
         if (State.wakePhase == WakePhase.Completed) return;
         Console.WriteLine(State.currentYear);
-        
+        // if the user is in the sleeping phase the timer will countdown  10 seconds until the new awake cycle.
         if (State.wakePhase == WakePhase.Sleeping)
         {
             State.sleepSecondsRemaining -= Time.deltaTime;
@@ -39,26 +40,33 @@ public class WakeCycleManager : MonoBehaviour
             if(State.sleepSecondsRemaining < 0)
             {
                 StartWakeCycle();
+                
+                // when the new awake cycle is started this will be considered a new year
                 State.currentYear += 1;
-                Debug.Log(State.currentYear.GetType());
+                OnYearChange?.Invoke(State.currentYear);
+                OnStateChange?.Invoke(State.wakePhase);
 
             }
         }
+        // if you are in the awake phase begin counting down 30 seconds until the new sleep cycle begins
         if (State.wakePhase == WakePhase.Awake)
         {
             State.wakeSecondsRemaining -= Time.deltaTime;
+            if (State.wakeSecondsRemaining < 0)
+            {
+                State.wakeSecondsRemaining = 0f;
+                StartSleepCycle();
+                OnStateChange?.Invoke(State.wakePhase);
+            }
         }
         
 
-        if (State.wakeSecondsRemaining < 0)
-        {
-            State.wakeSecondsRemaining = 0f;
-            StartSleepCycle();
-        }
-
+        
+        // after max years the game is completed and the wake cycle no longer needs to go on
         if (State.currentYear > State.maxYears)
         {
             State.wakePhase = WakePhase.Completed;
+            OnStateChange?.Invoke(State.wakePhase);
         }
 
     }
