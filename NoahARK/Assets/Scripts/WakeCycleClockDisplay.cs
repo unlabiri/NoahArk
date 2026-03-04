@@ -50,7 +50,7 @@ public class WakeCycleClockDisplay : MonoBehaviour
         if(timeText != null)
         {
             string time = FormatMMSS(secondsRemaining);
-            timeText.text = $"{year} {label} {time}";
+            timeText.text = $"year {year} {label} {time}";
             
 
         }
