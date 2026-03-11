@@ -22,13 +22,8 @@ public class RainforestBiomeController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-        AdvanceTime();
-        ProcessScheduledEvents();
-    }
 
-    public void RegisterPlant(PlantEntity plant)
+    public void RegisterPlant(RainforestPlantEntity plant)
     {
         if (plant == null || plants.Contains(plant))
             return;
@@ -48,7 +43,7 @@ public class RainforestBiomeController : MonoBehaviour
         {
             if (plant == null) continue;
 
-            if (plant.State.isAlive)
+            if (plant.plantState.isAlive)
                 State.totalAlivePlantCount++;
             else
                 State.totalDeadPlantCount++;
@@ -59,19 +54,19 @@ public class RainforestBiomeController : MonoBehaviour
     {
         if (State.totalPlantCount <= 0)
         {
-            State.biomeHealthState = BiomeHealthState.Extinct;
+            State.health = BiomeHealthState.Extinct;
             return;
         }
 
         float alivePercent = (float)State.totalAlivePlantCount / State.totalPlantCount;
 
         if (alivePercent >= 0.75f)
-            State.biomeHealthState = BiomeHealthState.Healthy;
+            State.health = BiomeHealthState.Health;
         else if (alivePercent >= 0.50f)
-            State.biomeHealthState = BiomeHealthState.Vulnerable;
+            State.health = BiomeHealthState.Vulnerable;
         else if (alivePercent > 0f)
-            State.biomeHealthState = BiomeHealthState.Endangered;
+            State.health = BiomeHealthState.Endangered;
         else
-            State.biomeHealthState = BiomeHealthState.Extinct;
+            State.health = BiomeHealthState.Extinct;
     }
 }

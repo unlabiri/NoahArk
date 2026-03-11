@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class RainforestPlantEntity : MonoBehaviour
 {
-    public RainforestPlantState State = new RainforestPlantState();
+    public RainforestPlantState plantState = new RainforestPlantState();
     public RainforestBiomeController biomeController;
-    public RainforestBiomeState biomeState = biomeController.State;
+
     [SerializeField] private float maxSafeTemperature = 50f;
     [SerializeField] private float minSafeTemperature = 100f;
     [SerializeField] private float maxSafeHumidity = .88f;
@@ -16,7 +16,7 @@ public class RainforestPlantEntity : MonoBehaviour
 
     [SerializeField] private float damageIntervalTemperature = 10f; //180 real time (3 min)
     [SerializeField] private float damageIntervalHumidity = 10f; //240 real time (4 min)
-    void Initialize(RainforestBiomeController controller)
+    public void Initialize(RainforestBiomeController controller)
     {
         biomeController = controller;
     }
@@ -34,22 +34,54 @@ public class RainforestPlantEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!State.isAlive || biomeController == null)
+        var biomeState = biomeController.State;
+        if (!plantState.isAlive || biomeController == null)
             return;
-        bool tempUnsafe = biomeState.tempUnsafe > maxSafeTemperature
+        bool tempUnsafe = biomeState.temperature > maxSafeTemperature
         || biomeState.temperature < minSafeTemperature;
+
 
         if (tempUnsafe)
         {
-            State.timeInUnsafeTemperature += Time.deltaTime;
+            Debug.Log(tempUnsafe);
+            plantState.timeInUnsafeTemperature += Time.deltaTime;
         }
 
         if (tempUnsafe &&
-        (State.timeInUnsafeTemperature == damageIntervalTemperature) &&
-        State.health > 0)
+        (plantState.timeInUnsafeTemperature == damageIntervalTemperature) &&
+        plantState.health > 0)
         {
-            State.health -= 20;
-            damangeIntervalTemperature += damageIntervalTemperature;
+            plantState.health -= 20;
+            damageIntervalTemperature += damageIntervalTemperature;
+        }
+
+        if (!tempUnsafe)
+        {
+            if (plantState.health < 100)
+            {
+                plantState.health += 10;
+                if (plantState.health >= 100)
+                {
+                    plantState.health = 100;
+                }
+            }
+            
+        }
+    }
+    public void UpdatePlantLifeStage()
+    {
+        if (plantState.health == 0)
+        {
+            plantState.stage = PlantStage.Dead;
+        } else if (plantState.health >= 1 && plantState.health <= 49)
+        {
+            plantState.stage = PlantStage.Wilted2;
+        } else if (plantState.health >= 50 && plantState.health <= 89)
+        {
+            plantState.stage = PlantStage.Wilted1;
+        } else
+        {
+            plantState.stage = PlantStage.Healthy;
         }
     }
 }
