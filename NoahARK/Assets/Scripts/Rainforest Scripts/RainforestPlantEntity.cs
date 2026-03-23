@@ -34,6 +34,7 @@ public class RainforestPlantEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (plantState.health == 0) return;
         var biomeState = biomeController.State;
         if (!plantState.isAlive || biomeController == null)
             return;
@@ -43,23 +44,31 @@ public class RainforestPlantEntity : MonoBehaviour
 
         if (tempUnsafe)
         {
-            Debug.Log(tempUnsafe);
             plantState.timeInUnsafeTemperature += Time.deltaTime;
         }
 
-        if (tempUnsafe &&
-        (plantState.timeInUnsafeTemperature == damageIntervalTemperature) &&
-        plantState.health > 0)
+        if ( tempUnsafe && 
+        (plantState.timeInUnsafeTemperature >= damageIntervalTemperature) 
+        // && (plantState.health > 0)
+        )
         {
             plantState.health -= 20;
-            damageIntervalTemperature += damageIntervalTemperature;
+            UpdatePlantLifeStage();
+
+            Debug.Log(plantState.health);
+            Debug.Log(plantState.stage);
+
+            damageIntervalTemperature += 10f;
         }
 
         if (!tempUnsafe)
         {
+            // reset the timers when the temp is stabilized and begin slow regeneration
+            plantState.timeInUnsafeTemperature = 0f;
             if (plantState.health < 100)
             {
                 plantState.health += 10;
+                UpdatePlantLifeStage();
                 if (plantState.health >= 100)
                 {
                     plantState.health = 100;
@@ -70,7 +79,7 @@ public class RainforestPlantEntity : MonoBehaviour
     }
     public void UpdatePlantLifeStage()
     {
-        if (plantState.health == 0)
+        if (plantState.health <= 0)
         {
             plantState.stage = PlantStage.Dead;
         } else if (plantState.health >= 1 && plantState.health <= 49)

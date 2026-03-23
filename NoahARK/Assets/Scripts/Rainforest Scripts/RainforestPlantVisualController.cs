@@ -64,11 +64,11 @@ public class RainforestPlantVisualController : MonoBehaviour
                 break;
             case PlantStage.Wilted2:
                 SetActiveModel(useHealthyModel: false);
-                healthyRenderer.material = wiltedMaterial;
+                wiltedRenderer.material = wiltedMaterial;
                 break;
             case PlantStage.Dead:
                 SetActiveModel(useHealthyModel: false);
-                healthyRenderer.material = deadMaterial;
+                wiltedRenderer.material = deadMaterial;
                 break;
 
 
