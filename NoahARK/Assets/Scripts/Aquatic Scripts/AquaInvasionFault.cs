@@ -3,10 +3,31 @@ using UnityEngine;
 public class AquaInvasionFault : AquaFaultBase
 {
     [Header("Control Rules")]
-    public int controlThreshold = 1;       
-    public int yearsToMaintainControl = 2; 
+    public int controlThreshold = 1;
+    public int yearsToMaintainControl = 2;
+
+    [Header("Visuals")]
+    [SerializeField] private Renderer sphereRenderer;
+    [SerializeField] private Color inactiveColor = Color.gray;
+    [SerializeField] private Color activeColor = Color.red;
+    [SerializeField] private Color resolvedColor = Color.green;
+    [SerializeField] private Color failedColor = Color.black;
 
     private int controlStreak = 0;
+
+    private void Start()
+    {
+        UpdateSphereColor();
+    }
+
+    public override void Activate()
+    {
+        base.Activate();
+        controlStreak = 0;
+        UpdateSphereColor();
+        Debug.Log($"{name}: ubvasuib actuvate cakked");
+
+    }
 
     protected override void OnNewYear(int newYear)
     {
@@ -22,6 +43,8 @@ public class AquaInvasionFault : AquaFaultBase
             state = FaultState.Resolved;
             Debug.Log($"{name}: Resolved");
         }
+
+        UpdateSphereColor();
     }
 
     public void RemoveInvasive(int amount)
@@ -30,7 +53,27 @@ public class AquaInvasionFault : AquaFaultBase
 
         stress = Mathf.Max(0, stress - amount);
         RecomputeSeverity();
+        UpdateSphereColor();
+    }
 
-        Debug.Log($"{name}: Resolved");
+    private void UpdateSphereColor()
+    {
+        if (sphereRenderer == null) return;
+
+        switch (state)
+        {
+            case FaultState.Inactive:
+                sphereRenderer.material.color = inactiveColor;
+                break;
+            case FaultState.Active:
+                sphereRenderer.material.color = activeColor;
+                break;
+            case FaultState.Resolved:
+                sphereRenderer.material.color = resolvedColor;
+                break;
+            case FaultState.Failed:
+                sphereRenderer.material.color = failedColor;
+                break;
+        }
     }
 }
