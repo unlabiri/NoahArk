@@ -23,6 +23,8 @@ public class RainforestBiomeController : MonoBehaviour
 
     // Update is called once per frame
 
+    
+
     public void RegisterPlant(RainforestPlantEntity plant)
     {
         if (plant == null || plants.Contains(plant))

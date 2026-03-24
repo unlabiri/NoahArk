@@ -7,8 +7,8 @@ using System;
 public class RainforestBiomeState
 {
     public BiomeHealthState health = BiomeHealthState.Health;
-    public float temperature = 110f;
-    public float humidity = .8f;
+    public float temperature = 80f;
+    public float humidity = .99f;
     public bool invasiveSpecies = false;
     public int totalPlantCount = 0;
     public int totalAlivePlantCount = 0;

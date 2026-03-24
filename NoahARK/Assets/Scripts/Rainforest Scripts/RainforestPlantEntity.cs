@@ -16,6 +16,8 @@ public class RainforestPlantEntity : MonoBehaviour
 
     [SerializeField] private float damageIntervalTemperature = 10f; //180 real time (3 min)
     [SerializeField] private float damageIntervalHumidity = 10f; //240 real time (4 min)
+    [SerializeField] private float damageIntervalInfection = 10f;
+    [SerializeField] private float propagateInfectionTime = 25f;
     public void Initialize(RainforestBiomeController controller)
     {
         biomeController = controller;
@@ -40,6 +42,8 @@ public class RainforestPlantEntity : MonoBehaviour
             return;
         bool tempUnsafe = biomeState.temperature > maxSafeTemperature
         || biomeState.temperature < minSafeTemperature;
+        bool humidityUnsafe = biomeState.humidity > maxSafeHumidity
+            || biomeState.humidity < minSafeHumidity;
 
 
         if (tempUnsafe)
@@ -47,9 +51,47 @@ public class RainforestPlantEntity : MonoBehaviour
             plantState.timeInUnsafeTemperature += Time.deltaTime;
         }
 
+        if (humidityUnsafe)
+        {
+            plantState.timeInUnsafeHumidity += Time.deltaTime; 
+        }
+
+        if (plantState.isInfected)
+        {
+            plantState.timeInfected += Time.deltaTime;
+        }
+        // triggers infeciton propagation
+
+        if (plantState.isInfected &&
+            (plantState.isInfected >= propagateInfectionTime))
+        {
+
+        }
+
+        if (plantState.isInfected &&
+            (plantState.timeInfected >= damageIntervalInfection) &&
+            (plantState.health > 0))
+        {
+            plantState.health -= 10;
+            UpdatePlantLifeStage();
+            damageIntervalInfection += 10f;
+        }
+
+        if (humidityUnsafe &&
+            (plantState.timeInUnsafeHumidity >= damageIntervalHumidity) &&
+            (plantState.health > 0)) 
+        {
+            plantState.health -= 20;
+            UpdatePlantLifeStage();
+
+            Debug.Log(humidityUnsafe);
+
+            damageIntervalHumidity += 10f;
+
+        }
         if ( tempUnsafe && 
         (plantState.timeInUnsafeTemperature >= damageIntervalTemperature) 
-        // && (plantState.health > 0)
+         && (plantState.health > 0)
         )
         {
             plantState.health -= 20;
@@ -61,10 +103,12 @@ public class RainforestPlantEntity : MonoBehaviour
             damageIntervalTemperature += 10f;
         }
 
-        if (!tempUnsafe)
+        if (!tempUnsafe && !humidityUnsafe && !plantState.isInfected)
         {
             // reset the timers when the temp is stabilized and begin slow regeneration
             plantState.timeInUnsafeTemperature = 0f;
+            plantState.timeInUnsafeHumidity = 0f;
+            plantState.timeInfected = 0f;
             if (plantState.health < 100)
             {
                 plantState.health += 10;
@@ -82,6 +126,7 @@ public class RainforestPlantEntity : MonoBehaviour
         if (plantState.health <= 0)
         {
             plantState.stage = PlantStage.Dead;
+            plantState.isAlive = false;
         } else if (plantState.health >= 1 && plantState.health <= 49)
         {
             plantState.stage = PlantStage.Wilted2;

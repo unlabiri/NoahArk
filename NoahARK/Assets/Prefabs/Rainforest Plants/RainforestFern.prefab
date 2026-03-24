@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 4835246757451403458}
   - component: {fileID: 3557797993784077017}
   - component: {fileID: 8100385405044494676}
+  - component: {fileID: 4197475894845271125}
   m_Layer: 0
   m_Name: RainforestFern
   m_TagString: Untagged
@@ -132,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 4807059843114417824}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -5}
+  m_LocalPosition: {x: 0.09, y: 1.009, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -186,6 +187,27 @@ MonoBehaviour:
   minSafeHumidity: 0.77
   damageIntervalTemperature: 10
   damageIntervalHumidity: 10
+--- !u!135 &4197475894845271125
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4807059843114417824}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.3
+  m_Center: {x: 1.03, y: -0.46, z: -1.195}
 --- !u!1 &8992806526630997633
 GameObject:
   m_ObjectHideFlags: 0

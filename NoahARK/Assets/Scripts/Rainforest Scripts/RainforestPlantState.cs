@@ -11,6 +11,7 @@ public class RainforestPlantState
     public bool isAlive = true;
     public float timeInUnsafeTemperature = 0f;
     public float timeInUnsafeHumidity = 0f;
+    public bool isInfected = false;
     public float timeInfected = 0f;
     public float health = 100f;
 
