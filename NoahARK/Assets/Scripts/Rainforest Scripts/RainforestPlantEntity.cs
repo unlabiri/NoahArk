@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Microsoft.VisualBasic;
 using UnityEngine;
+using System;
 
 public class RainforestPlantEntity : MonoBehaviour
 {
-    public RainforestPlantState plantState = new RainforestPlantState();
+    public RainforestPlantState plantState;
     public RainforestBiomeController biomeController;
 
-    [SerializeField] private float maxSafeTemperature = 50f;
-    [SerializeField] private float minSafeTemperature = 100f;
+    [SerializeField] private float maxSafeTemperature = 100f;
+    [SerializeField] private float minSafeTemperature = 50f;
     [SerializeField] private float maxSafeHumidity = .88f;
     [SerializeField] private float minSafeHumidity = .77f;
 
@@ -18,6 +19,9 @@ public class RainforestPlantEntity : MonoBehaviour
     [SerializeField] private float damageIntervalHumidity = 10f; //240 real time (4 min)
     [SerializeField] private float damageIntervalInfection = 10f;
     [SerializeField] private float propagateInfectionTime = 25f;
+
+    private List<RainforestPlantEntity> nearbyPlants = new List<RainforestPlantEntity>();
+
     public void Initialize(RainforestBiomeController controller)
     {
         biomeController = controller;
@@ -25,6 +29,7 @@ public class RainforestPlantEntity : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        plantState = new RainforestPlantState();
         if (biomeController == null)
         {
             biomeController = FindObjectOfType<RainforestBiomeController>();
@@ -40,12 +45,11 @@ public class RainforestPlantEntity : MonoBehaviour
         var biomeState = biomeController.State;
         if (!plantState.isAlive || biomeController == null)
             return;
-        bool tempUnsafe = biomeState.temperature > maxSafeTemperature
-        || biomeState.temperature < minSafeTemperature;
-        bool humidityUnsafe = biomeState.humidity > maxSafeHumidity
-            || biomeState.humidity < minSafeHumidity;
+        bool tempUnsafe = (biomeState.temperature > maxSafeTemperature) || (biomeState.temperature < minSafeTemperature);
+        
+        bool humidityUnsafe = biomeState.humidity > maxSafeHumidity || biomeState.humidity < minSafeHumidity;
 
-
+        
         if (tempUnsafe)
         {
             plantState.timeInUnsafeTemperature += Time.deltaTime;
@@ -63,8 +67,17 @@ public class RainforestPlantEntity : MonoBehaviour
         // triggers infeciton propagation
 
         if (plantState.isInfected &&
-            (plantState.isInfected >= propagateInfectionTime))
+            (plantState.timeInfected >= propagateInfectionTime))
         {
+            foreach(RainforestPlantEntity plant in nearbyPlants)
+            {
+                if (plant != null)
+                {
+                    plant.plantState.isInfected = true;
+                    
+                }
+            }
+
 
         }
 
@@ -136,6 +149,16 @@ public class RainforestPlantEntity : MonoBehaviour
         } else
         {
             plantState.stage = PlantStage.Healthy;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        RainforestPlantEntity plant = other.GetComponent<RainforestPlantEntity>();
+
+        if (plant != null && plant != this)
+        {
+            nearbyPlants.Add(plant);
         }
     }
 }
