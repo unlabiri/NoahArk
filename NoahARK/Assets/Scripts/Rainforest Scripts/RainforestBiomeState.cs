@@ -6,10 +6,9 @@ using System;
 [Serializable]
 public class RainforestBiomeState
 {
-    public BiomeHealthState health = BiomeHealthState.Health;
+    public BiomeHealthState health = BiomeHealthState.Healthy;
     public float temperature = 70f;
     public float humidity = .8f;
-    public bool invasiveSpecies = false;
     public int totalPlantCount = 0;
     public int totalAlivePlantCount = 0;
     public int totalDeadPlantCount = 0;
@@ -18,7 +17,7 @@ public class RainforestBiomeState
 
 public enum BiomeHealthState
 {
-    Health, // 100% - 71%
+    Healthy, // 100% - 71%
     Vulnerable, // 70% - 31%
     Endangered, // 30% - 1%
     Extinct // 0%

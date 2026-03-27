@@ -5,7 +5,8 @@ using UnityEngine;
 public class RainforestBiomeController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public RainforestBiomeState State { get; private set; } = new RainforestBiomeState();
+    [SerializeField] private RainforestBiomeState state = new RainforestBiomeState();
+    public RainforestBiomeState State => state;
     [SerializeField] private List<RainforestPlantEntity> plants = new();
     private void Start()
     {
@@ -22,8 +23,13 @@ public class RainforestBiomeController : MonoBehaviour
     }
 
     // Update is called once per frame
+    public void Update()
+    {
+        RefreshPlantCounts();
+        UpdateBiomeHealthState();
+    }
 
-    
+
 
     public void RegisterPlant(RainforestPlantEntity plant)
     {
@@ -44,9 +50,9 @@ public class RainforestBiomeController : MonoBehaviour
         foreach (var plant in plants)
         {
             if (plant == null) continue;
-
             if (plant.plantState.isAlive)
                 State.totalAlivePlantCount++;
+
             else
                 State.totalDeadPlantCount++;
         }
@@ -61,9 +67,10 @@ public class RainforestBiomeController : MonoBehaviour
         }
 
         float alivePercent = (float)State.totalAlivePlantCount / State.totalPlantCount;
+        
 
         if (alivePercent >= 0.75f)
-            State.health = BiomeHealthState.Health;
+            State.health = BiomeHealthState.Healthy;
         else if (alivePercent >= 0.50f)
             State.health = BiomeHealthState.Vulnerable;
         else if (alivePercent > 0f)
