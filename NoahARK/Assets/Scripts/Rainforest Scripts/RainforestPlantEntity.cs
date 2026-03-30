@@ -97,7 +97,7 @@ public class RainforestPlantEntity : MonoBehaviour
             plantState.health -= 20;
             UpdatePlantLifeStage();
 
-            Debug.Log(humidityUnsafe);
+
 
             damageIntervalHumidity += 10f;
 
@@ -110,8 +110,6 @@ public class RainforestPlantEntity : MonoBehaviour
             plantState.health -= 20;
             UpdatePlantLifeStage();
 
-            Debug.Log(plantState.health);
-            Debug.Log(plantState.stage);
 
             damageIntervalTemperature += 10f;
         }
