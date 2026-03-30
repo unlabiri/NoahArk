@@ -2,43 +2,89 @@ using UnityEngine;
 
 public class AquaNutrientFault : AquaFaultBase
 {
-    [Header("Scenario Toggles")]
-    public bool runoffSourceStillActive = true;
+    [Header("Visuals")]
+    [SerializeField] private Renderer planeRenderer;
+
+    [SerializeField] private Material normalWaterMaterial;
+    [SerializeField] private Material lowMaterial;
+    [SerializeField] private Material mediumMaterial;
+    [SerializeField] private Material highMaterial;
+    [SerializeField] private Material criticalMaterial;
+    [SerializeField] private Material failedMaterial;
+
+    private void Start()
+    {
+        UpdatePlaneMaterial();
+    }
+
+    public override void Activate()
+    {
+        base.Activate();
+        UpdatePlaneMaterial();
+    }
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        UpdatePlaneMaterial();
+    }
 
     protected override void OnNewYear(int newYear)
     {
-        if (runoffSourceStillActive)
-        {
-            stress += stressPerYear;
-            Debug.Log($"{name}: RUNOFF active.");
-        }
-        else
-        {
-            //  natural recovery when source is removed
-            stress = Mathf.Max(0, stress - 1);
-            Debug.Log($"{name}: RUNOFF FIXED.");
-        }
-    }
-
-    public void ReduceNutrients(int amount)
-    {
-        if (state != FaultState.Active) return;
-
-        stress = Mathf.Max(0, stress - amount);
+        stress += stressPerYear;
         RecomputeSeverity();
+        UpdatePlaneMaterial();
+    }
 
-        Debug.Log($"{name}: stress={stress}, severity={severity}");
-
-        if (stress == 0)
+    private void Update()
+    {
+        if (planeRenderer != null)
         {
-            state = FaultState.Resolved;
-            Debug.Log($"{name}: RESOLVED");
+            UpdatePlaneMaterial();
         }
     }
 
-    public void FixRunoffSource()
+    private void UpdatePlaneMaterial()
     {
-        runoffSourceStillActive = false;
-        Debug.Log($"{name}: RUNOFF FIXED.");
+        if (planeRenderer == null) return;
+
+        switch (state)
+        {
+            case FaultState.Inactive:
+            case FaultState.Resolved:
+                if (normalWaterMaterial != null)
+                    planeRenderer.material = normalWaterMaterial;
+                break;
+
+            case FaultState.Failed:
+                if (failedMaterial != null)
+                    planeRenderer.material = failedMaterial;
+                break;
+
+            case FaultState.Active:
+                switch (severity)
+                {
+                    case Severity.Low:
+                        if (lowMaterial != null)
+                            planeRenderer.material = lowMaterial;
+                        break;
+
+                    case Severity.Medium:
+                        if (mediumMaterial != null)
+                            planeRenderer.material = mediumMaterial;
+                        break;
+
+                    case Severity.High:
+                        if (highMaterial != null)
+                            planeRenderer.material = highMaterial;
+                        break;
+
+                    case Severity.Critical:
+                        if (criticalMaterial != null)
+                            planeRenderer.material = criticalMaterial;
+                        break;
+                }
+                break;
+        }
     }
 }
