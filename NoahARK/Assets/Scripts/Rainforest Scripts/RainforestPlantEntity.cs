@@ -156,9 +156,18 @@ public class RainforestPlantEntity : MonoBehaviour
     {
         RainforestPlantEntity plant = other.GetComponent<RainforestPlantEntity>();
 
+        if (other.CompareTag("Treeshot"))
+        {
+            if (plantState.isInfected)
+            {
+                plantState.isInfected = false;
+            }
+        }
+
         if (plant != null && plant != this)
         {
             nearbyPlants.Add(plant);
         }
     }
+
 }
