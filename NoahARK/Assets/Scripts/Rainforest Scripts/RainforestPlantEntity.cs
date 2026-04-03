@@ -20,6 +20,8 @@ public class RainforestPlantEntity : MonoBehaviour
     [SerializeField] private float damageIntervalInfection = 10f;
     [SerializeField] private float propagateInfectionTime = 25f;
 
+
+
     private float timeInSafeConditions = 0f;
     private float timeToRegen = 20f;
 
