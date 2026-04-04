@@ -114,4 +114,12 @@ public class AquaInvasionFault : AquaFaultBase
             alarmLight.enabled = currentColor != Color.black;
         }
     }
+    public void ResolveInvasiveFault()
+    {
+        state = FaultState.Inactive;
+        stress = 0;
+        controlStreak = 0;
+
+        Debug.Log($"{name}: Invasive fault cleared.");
+    }
 }
