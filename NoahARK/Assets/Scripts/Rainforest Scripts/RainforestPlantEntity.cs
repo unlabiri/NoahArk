@@ -20,6 +20,8 @@ public class RainforestPlantEntity : MonoBehaviour
     [SerializeField] private float damageIntervalInfection = 10f;
     [SerializeField] private float propagateInfectionTime = 25f;
 
+    private bool infectedNeighbors = false;
+
 
 
     private float timeInSafeConditions = 0f;
@@ -78,7 +80,7 @@ public class RainforestPlantEntity : MonoBehaviour
         // triggers infeciton propagation
 
         if (plantState.isInfected &&
-            (plantState.timeInfected >= propagateInfectionTime))
+            (plantState.timeInfected >= propagateInfectionTime) && !infectedNeighbors)
         {
             foreach(RainforestPlantEntity plant in nearbyPlants)
             {
@@ -88,6 +90,7 @@ public class RainforestPlantEntity : MonoBehaviour
                     
                 }
             }
+            infectedNeighbors = true;
 
 
         }
@@ -174,18 +177,24 @@ public class RainforestPlantEntity : MonoBehaviour
     {
         RainforestPlantEntity plant = other.GetComponent<RainforestPlantEntity>();
 
-        if (other.CompareTag("Treeshot"))
+
+        if (plant != null && plant != this)
         {
+            nearbyPlants.Add(plant);
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Herbicide"))
+        {
+
             if (plantState.isInfected)
             {
                 plantState.isInfected = false;
             }
         }
 
-        if (plant != null && plant != this)
-        {
-            nearbyPlants.Add(plant);
-        }
     }
 
 }
