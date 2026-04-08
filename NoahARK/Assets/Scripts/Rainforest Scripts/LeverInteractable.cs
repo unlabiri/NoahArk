@@ -5,7 +5,7 @@ using Valve.VR.InteractionSystem;   // SteamVR Interaction System
 public class LeverInteractable : MonoBehaviour
 {
     [Header("Hinge Settings")]
-    public HingeJoint hinge;          // The HingeJoint on this lever
+    public Vector3 localRotationAxis;
     public float minAngle = -45f;
     public float maxAngle =  45f;
 
@@ -13,35 +13,31 @@ public class LeverInteractable : MonoBehaviour
     // The axis the lever rotates around in WORLD space.
     // If your lever tilts forward/back use Vector3.right,
     // side-to-side use Vector3.forward.
-    public Vector3 hingeWorldAxis = Vector3.right;
+
 
     // The pivot point the lever rotates around (usually this transform's position)
-    public Transform pivotPoint;
+    public float followSpeed = 20f;
 
     // -------------------------------------------------------
     // Private state
     // -------------------------------------------------------
     private Hand holdingHand = null;
     private Interactable interactable;
+    private float currentAngle = 0f;
+    private Quaternion neutralRotation;
+    private Rigidbody rb;
 
-    void Awake()
+    public float NormalizedValue =>
+        Mathf.InverseLerp(minAngle, maxAngle, currentAngle);
+
+    private void Start()
     {
-        interactable = GetComponent<Interactable>();
-        if (pivotPoint == null) pivotPoint = transform;
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-        // Make sure hinge limits match your settings
-        if (hinge != null)
-        {
-            JointLimits limits = hinge.limits;
-            limits.min = minAngle;
-            limits.max = maxAngle;
-            hinge.limits = limits;
-            hinge.useLimits = true;
-
-            // Disable the hinge motor/spring so physics doesn't fight us
-            hinge.useMotor  = false;
-            hinge.useSpring = false;
-        }
+        neutralRotation = transform.rotation;
     }
 
     // -------------------------------------------------------
@@ -66,40 +62,41 @@ public class LeverInteractable : MonoBehaviour
         if (hand == null) return;
 
         // Vector from pivot to hand
-        Vector3 toHand = hand.transform.position - pivotPoint.position;
+        Vector3 worldAxis = transform.parent != null ? transform.parent.TransformDirection(localRotationAxis.normalized)
+            : localRotationAxis.normalized;
+        Vector3 toHand = hand.transform.position - transform.position;
+        Vector3 flatHand = toHand - Vector3.Dot(toHand, worldAxis) * worldAxis;
 
-        // Remove the component along the hinge axis so we stay in the rotation plane
-        Vector3 axisNorm = hingeWorldAxis.normalized;
-        Vector3 projected = toHand - Vector3.Dot(toHand, axisNorm) * axisNorm;
+        if (flatHand.sqrMagnitude < 0.0001f) return;
 
-        if (projected.sqrMagnitude < 0.0001f) return;
+        Vector3 neutralFwd = neutralRotation * Vector3.forward;
+        Vector3 flatFwd = neutralFwd - Vector3.Dot(neutralFwd, worldAxis) * worldAxis;
 
-        // Reference direction = lever at angle 0 (straight down or forward)
-        // Adjust referenceDir to match your lever's neutral pose
-        Vector3 referenceDir = Vector3.down; // Change to Vector3.forward if needed
+        if (flatFwd.sqrMagnitude < .0001f) return;
 
-        float angle = Vector3.SignedAngle(referenceDir, projected.normalized, axisNorm);
-        angle = Mathf.Clamp(angle, minAngle, maxAngle);
+        float targetAngle = Vector3.SignedAngle(
+            flatFwd.normalized,
+            flatHand.normalized,
+            worldAxis
+            );
+        targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
 
-        // Apply rotation: keep world position, only change rotation around hinge axis
-        transform.localRotation = Quaternion.AngleAxis(angle, transform.InverseTransformDirection(axisNorm));
+        currentAngle = Mathf.MoveTowards(currentAngle, targetAngle, followSpeed * Time.deltaTime * 90f);
+
+        Quaternion targetRot = Quaternion.AngleAxis(currentAngle, worldAxis) * neutralRotation;
+
+        rb.MoveRotation(targetRot);
     }
 
     // -------------------------------------------------------
     // Optional: freeze lever in place when released
     // (remove if you want it to fall back by gravity)
     // -------------------------------------------------------
-    private void OnDetachedFromHand_Post(Hand hand)
+    private void OnDrawGizmosSelected()
     {
-        if (hinge != null)
-        {
-            // Lock in place by briefly enabling a spring at current angle
-            JointSpring spring = hinge.spring;
-            spring.targetPosition = hinge.angle;
-            spring.spring = 500f;
-            spring.damper = 50f;
-            hinge.spring = spring;
-            hinge.useSpring = true;
-        }
+        Gizmos.color = Color.cyan;
+        Vector3 axis = transform.TransformDirection(localRotationAxis.normalized);
+        Gizmos.DrawRay(transform.position, axis * 0.3f);
+        Gizmos.DrawRay(transform.position, -axis * 0.3f);
     }
 }

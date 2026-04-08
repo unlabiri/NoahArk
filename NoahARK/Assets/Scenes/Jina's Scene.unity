@@ -401,6 +401,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3699c3cc84cc6c47848d28036b17205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  biomeController: {fileID: 0}
+  biomeState:
+    health: 0
+    temperature: 70
+    humidity: 0.8
+    totalPlantCount: 0
+    totalAlivePlantCount: 0
+    totalDeadPlantCount: 0
   currentMode: 0
 --- !u!4 &239806639
 Transform:
@@ -8603,15 +8611,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2879070364656932655, guid: 269c6a40bfb5a394d94f6883ad281c2c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1882723237}
-    - targetCorrespondingSourceObject: {fileID: 2879070364656932655, guid: 269c6a40bfb5a394d94f6883ad281c2c,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1882723236}
     - targetCorrespondingSourceObject: {fileID: 2879070364656932655, guid: 269c6a40bfb5a394d94f6883ad281c2c,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1882723242}
+    - targetCorrespondingSourceObject: {fileID: 2879070364656932655, guid: 269c6a40bfb5a394d94f6883ad281c2c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1882723244}
+    - targetCorrespondingSourceObject: {fileID: 2879070364656932655, guid: 269c6a40bfb5a394d94f6883ad281c2c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1882723243}
     - targetCorrespondingSourceObject: {fileID: 1559748851627424795, guid: 269c6a40bfb5a394d94f6883ad281c2c,
         type: 3}
       insertIndex: -1
@@ -9281,7 +9293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activateActionSetOnAttach:
-    actionSetPath: /actions/default
+    actionSetPath: 
   hideHandOnAttach: 1
   hideSkeletonOnAttach: 0
   hideControllerOnAttach: 0
@@ -9320,45 +9332,6 @@ MonoBehaviour:
   highlightOnHover: 1
   hideHighlight: []
   hoverPriority: 0
---- !u!59 &1882723237
-HingeJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882723235}
-  m_ConnectedBody: {fileID: 0}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0.041618507, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  serializedVersion: 2
-  m_UseSpring: 0
-  m_Spring:
-    spring: 0
-    damper: 0
-    targetPosition: 0
-  m_UseMotor: 0
-  m_Motor:
-    targetVelocity: 0
-    force: 0
-    freeSpin: 0
-  m_UseLimits: 1
-  m_ExtendedLimits: 0
-  m_UseAcceleration: 0
-  m_Limits:
-    min: -45
-    max: 45
-    bounciness: 0
-    bounceMinVelocity: 0.2
-    contactDistance: 0
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!54 &1882723238
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9386,6 +9359,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1882723239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8299016545003848433, guid: 269c6a40bfb5a394d94f6883ad281c2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1658154774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &1882723242
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9408,6 +9387,43 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4188492731819274950, guid: 269c6a40bfb5a394d94f6883ad281c2c, type: 3}
+--- !u!114 &1882723243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882723235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd53233857651349b04a5419bbe27d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localRotationAxis: {x: 0, y: 0, z: 1}
+  minAngle: -45
+  maxAngle: 45
+  followSpeed: 20
+--- !u!114 &1882723244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882723235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cebb59eb4faa1049a5af4d37d03f48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leverTransform: {fileID: 1882723239}
+  leverHinge: {fileID: 0}
+  controller: {fileID: 239806638}
+  leverMinAngle: -45
+  leverMaxAngle: 45
+  tempMin: 50
+  tempMax: 150
+  humidMin: 0
+  humidMax: 1
 --- !u!1001 &1943897975
 PrefabInstance:
   m_ObjectHideFlags: 0
