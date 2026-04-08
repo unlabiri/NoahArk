@@ -52,10 +52,14 @@ public class AquaInvasionFault : AquaFaultBase
         base.Activate();
         controlStreak = 0;
         UpdateAlarmVisual();
+        Debug.Log($"{name}: Invasive fault activated.");
     }
 
     protected override void OnNewYear(int newYear)
     {
+        if (state != FaultState.Active)
+            return;
+
         stress += stressPerYear;
 
         if (stress <= controlThreshold) controlStreak++;
@@ -64,6 +68,13 @@ public class AquaInvasionFault : AquaFaultBase
         if (controlStreak >= yearsToMaintainControl)
         {
             state = FaultState.Resolved;
+            Debug.Log($"{name}: Invasive fault resolved.");
+        }
+
+        if (stress >= failAtStress)
+        {
+            state = FaultState.Failed;
+            Debug.Log($"{name}: Invasive fault failed.");
         }
 
         UpdateAlarmVisual();
@@ -71,13 +82,25 @@ public class AquaInvasionFault : AquaFaultBase
 
     public void RemoveInvasive(int amount)
     {
-        if (state != FaultState.Active) return;
+        if (state != FaultState.Active)
+            return;
 
         stress = Mathf.Max(0, stress - amount);
         RecomputeSeverity();
 
         if (stress <= 0)
             state = FaultState.Resolved;
+
+        UpdateAlarmVisual();
+    }
+
+    public void ResolveInvasiveFault()
+    {
+        state = FaultState.Inactive;
+        stress = 0;
+        controlStreak = 0;
+
+        Debug.Log($"{name}: Invasive fault cleared.");
 
         UpdateAlarmVisual();
     }
@@ -113,13 +136,5 @@ public class AquaInvasionFault : AquaFaultBase
             alarmLight.color = currentColor;
             alarmLight.enabled = currentColor != Color.black;
         }
-    }
-    public void ResolveInvasiveFault()
-    {
-        state = FaultState.Inactive;
-        stress = 0;
-        controlStreak = 0;
-
-        Debug.Log($"{name}: Invasive fault cleared.");
     }
 }
