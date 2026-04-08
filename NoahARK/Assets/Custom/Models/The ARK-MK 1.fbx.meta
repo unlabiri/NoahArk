@@ -3,7 +3,42 @@ guid: 846ed0c7ff443fb4d8afce8c83ebb46a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: e8ce79fdc66c1ef4bb849464699bdaa3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: healthyLeavesTEMP
+    second: {fileID: 2100000, guid: 57933aa66ac4ee8499fc7e74a44cb081, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shipTexture
+    second: {fileID: 2100000, guid: 0dbdbb69096adf14a85e578f541025b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface1
+    second: {fileID: 2100000, guid: a4164432444b0834bb127a23b8e43391, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface3
+    second: {fileID: 2100000, guid: 1a5960308a862bb41b5bee0799da0548, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: treeTrunkTEMP
+    second: {fileID: 2100000, guid: eb0a6f0ba5194b94080979f62abf3ddb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: witheredLeavesTEMP
+    second: {fileID: 2100000, guid: 2ba243a3546230848a8bb861f74710eb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
