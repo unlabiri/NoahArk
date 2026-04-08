@@ -25,6 +25,7 @@ public class RainforestBiomeController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+
         RefreshPlantCounts();
         UpdateBiomeHealthState();
     }

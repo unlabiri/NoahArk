@@ -20,6 +20,13 @@ public class RainforestPlantEntity : MonoBehaviour
     [SerializeField] private float damageIntervalInfection = 10f;
     [SerializeField] private float propagateInfectionTime = 25f;
 
+    private bool infectedNeighbors = false;
+
+
+
+    private float timeInSafeConditions = 0f;
+    private float timeToRegen = 20f;
+
     private List<RainforestPlantEntity> nearbyPlants = new List<RainforestPlantEntity>();
 
     public void Initialize(RainforestBiomeController controller)
@@ -53,21 +60,27 @@ public class RainforestPlantEntity : MonoBehaviour
         if (tempUnsafe)
         {
             plantState.timeInUnsafeTemperature += Time.deltaTime;
+            timeInSafeConditions = 0f;
+            timeToRegen = 20f;
         }
 
         if (humidityUnsafe)
         {
-            plantState.timeInUnsafeHumidity += Time.deltaTime; 
+            plantState.timeInUnsafeHumidity += Time.deltaTime;
+            timeInSafeConditions = 0f;
+            timeToRegen = 20f;
         }
 
         if (plantState.isInfected)
         {
             plantState.timeInfected += Time.deltaTime;
+            timeInSafeConditions = 0f;
+            timeToRegen = 20f;
         }
         // triggers infeciton propagation
 
         if (plantState.isInfected &&
-            (plantState.timeInfected >= propagateInfectionTime))
+            (plantState.timeInfected >= propagateInfectionTime) && !infectedNeighbors)
         {
             foreach(RainforestPlantEntity plant in nearbyPlants)
             {
@@ -77,6 +90,7 @@ public class RainforestPlantEntity : MonoBehaviour
                     
                 }
             }
+            infectedNeighbors = true;
 
 
         }
@@ -114,21 +128,30 @@ public class RainforestPlantEntity : MonoBehaviour
             damageIntervalTemperature += 10f;
         }
 
+        // safe conditions allow for the plants to regenerate
+
         if (!tempUnsafe && !humidityUnsafe && !plantState.isInfected)
         {
             // reset the timers when the temp is stabilized and begin slow regeneration
             plantState.timeInUnsafeTemperature = 0f;
             plantState.timeInUnsafeHumidity = 0f;
             plantState.timeInfected = 0f;
-            if (plantState.health < 100)
+            timeInSafeConditions += Time.deltaTime;
+            if (timeInSafeConditions >= timeToRegen)
             {
-                plantState.health += 10;
-                UpdatePlantLifeStage();
-                if (plantState.health >= 100)
+                if (plantState.health < 100)
                 {
-                    plantState.health = 100;
+                    plantState.health += 10;
+                    UpdatePlantLifeStage();
+                    if (plantState.health >= 100)
+                    {
+                        plantState.health = 100;
+                    }
                 }
+                timeToRegen += 20f;
+
             }
+            
             
         }
     }
@@ -154,18 +177,24 @@ public class RainforestPlantEntity : MonoBehaviour
     {
         RainforestPlantEntity plant = other.GetComponent<RainforestPlantEntity>();
 
-        if (other.CompareTag("Treeshot"))
+
+        if (plant != null && plant != this)
         {
+            nearbyPlants.Add(plant);
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.CompareTag("Herbicide"))
+        {
+
             if (plantState.isInfected)
             {
                 plantState.isInfected = false;
             }
         }
 
-        if (plant != null && plant != this)
-        {
-            nearbyPlants.Add(plant);
-        }
     }
 
 }
