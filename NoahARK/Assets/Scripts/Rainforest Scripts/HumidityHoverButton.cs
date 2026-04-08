@@ -1,4 +1,4 @@
-﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: Drives a linear mapping based on position between 2 positions
 //
@@ -12,9 +12,10 @@ namespace Valve.VR.InteractionSystem
 {
     //-------------------------------------------------------------------------
     [RequireComponent(typeof(Interactable))]
-    public class HoverButton : MonoBehaviour
+    public class HumidityHoverButton : MonoBehaviour
     {
         public Transform movingPart;
+        public RainforestTempHumidController controller;
 
 
 
@@ -107,7 +108,10 @@ namespace Valve.VR.InteractionSystem
             if (buttonUp && onButtonUp != null)
                 onButtonUp.Invoke(lastHoveredHand);
             if (isEngaged && onButtonIsPressed != null)
+            {
                 onButtonIsPressed.Invoke(lastHoveredHand);
+                controller.SetMode(RainforestTempHumidController.ControlMode.Humidity);
+            }
         }
     }
 }
