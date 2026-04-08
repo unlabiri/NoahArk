@@ -315,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7094607
+      value: -3.15
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
@@ -357,6 +357,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
     - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: maxSafeTemperature
@@ -425,6 +430,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &254036070
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1502607316}
+    m_Modifications:
+    - target: {fileID: 4807059843114417824, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_Name
+      value: RainforestFern (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.903
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.631
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1d5100512feb6144a8d688b849ea8d9, type: 3}
+--- !u!4 &254036071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 254036070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &260785200
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,11 +991,101 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1716156496}
+  - {fileID: 1920043843}
+  - {fileID: 1027745190}
+  - {fileID: 369182265}
+  - {fileID: 1465317869}
+  - {fileID: 1809089819}
+  - {fileID: 505854405}
   - {fileID: 941706650}
   - {fileID: 1049418516}
   - {fileID: 1020331278}
   m_Father: {fileID: 1813975436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &369182264
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360426323}
+    m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_Name
+      value: KapokTree (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76931
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.312461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a4ebf55a8ff1f44e91195e85c8400b6, type: 3}
+--- !u!4 &369182265 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 369182264}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &380164461
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,17 +1155,17 @@ PrefabInstance:
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.269408
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6524608
+      value: -3.53
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.9408555
+      value: 1.82
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
@@ -1028,6 +1202,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
     - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: maxSafeTemperature
@@ -1092,6 +1271,85 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 51a017f8f7c97d04faa2c3dd9ae66c2a, type: 2}
+--- !u!1001 &436524867
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1502607316}
+    m_Modifications:
+    - target: {fileID: 4807059843114417824, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_Name
+      value: RainforestFern (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1d5100512feb6144a8d688b849ea8d9, type: 3}
+--- !u!4 &436524868 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 436524867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &483891701
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1114,6 +1372,90 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4147342352816037521, guid: 846ed0c7ff443fb4d8afce8c83ebb46a, type: 3}
+--- !u!1001 &505854404
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360426323}
+    m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_Name
+      value: KapokTree (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76931
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.312461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a4ebf55a8ff1f44e91195e85c8400b6, type: 3}
+--- !u!4 &505854405 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 505854404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &518407952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2509,95 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4377865600221286077, guid: 846ed0c7ff443fb4d8afce8c83ebb46a, type: 3}
+--- !u!1001 &936299293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1502607316}
+    m_Modifications:
+    - target: {fileID: 4807059843114417824, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_Name
+      value: RainforestFern (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9075167
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.42001602
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: maxSafeTemperature
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: minSafeTemperature
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1d5100512feb6144a8d688b849ea8d9, type: 3}
+--- !u!4 &936299294 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 936299293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &941706650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
@@ -7239,6 +7670,90 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1001 &1027745189
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360426323}
+    m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_Name
+      value: KapokTree (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76931
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.312461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a4ebf55a8ff1f44e91195e85c8400b6, type: 3}
+--- !u!4 &1027745190 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1027745189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1049418516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
@@ -7379,6 +7894,85 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeed: 12
   gravity: -9.81
+--- !u!1001 &1086765106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1502607316}
+    m_Modifications:
+    - target: {fileID: 4807059843114417824, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_Name
+      value: RainforestFern (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1d5100512feb6144a8d688b849ea8d9, type: 3}
+--- !u!4 &1086765107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086765106}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1087193246
 GameObject:
   m_ObjectHideFlags: 0
@@ -7535,6 +8129,85 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5302568919011541938, guid: 846ed0c7ff443fb4d8afce8c83ebb46a, type: 3}
+--- !u!1001 &1169001861
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1502607316}
+    m_Modifications:
+    - target: {fileID: 4807059843114417824, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_Name
+      value: RainforestFern (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1d5100512feb6144a8d688b849ea8d9, type: 3}
+--- !u!4 &1169001862 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1169001861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1187233360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4663679174155961175, guid: 9311617b76dd8d049b198314d66ddeb5,
@@ -7764,6 +8437,169 @@ MonoBehaviour:
     totalPlantCount: 0
     totalAlivePlantCount: 0
     totalDeadPlantCount: 0
+--- !u!1001 &1465317868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360426323}
+    m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_Name
+      value: KapokTree (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76931
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.312461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a4ebf55a8ff1f44e91195e85c8400b6, type: 3}
+--- !u!4 &1465317869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1465317868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1491099398
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1502607316}
+    m_Modifications:
+    - target: {fileID: 4807059843114417824, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_Name
+      value: RainforestFern (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.654
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8100385405044494676, guid: e1d5100512feb6144a8d688b849ea8d9,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1d5100512feb6144a8d688b849ea8d9, type: 3}
+--- !u!4 &1491099399 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1491099398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1502607315
 GameObject:
   m_ObjectHideFlags: 0
@@ -7796,6 +8632,12 @@ Transform:
   - {fileID: 1214284086}
   - {fileID: 637121551}
   - {fileID: 264263361}
+  - {fileID: 936299294}
+  - {fileID: 436524868}
+  - {fileID: 1086765107}
+  - {fileID: 1169001862}
+  - {fileID: 254036071}
+  - {fileID: 1491099399}
   m_Father: {fileID: 1813975436}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1515261723
@@ -7806,6 +8648,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 360426323}
     m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
     - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
         type: 3}
       propertyPath: m_Name
@@ -9115,6 +9962,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1943897975}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1809089818
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360426323}
+    m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_Name
+      value: KapokTree (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76931
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.312461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a4ebf55a8ff1f44e91195e85c8400b6, type: 3}
+--- !u!4 &1809089819 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1809089818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813975435
 GameObject:
   m_ObjectHideFlags: 0
@@ -9416,7 +10347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leverTransform: {fileID: 1882723239}
-  leverHinge: {fileID: 0}
   controller: {fileID: 239806638}
   leverMinAngle: -45
   leverMaxAngle: 45
@@ -9424,6 +10354,85 @@ MonoBehaviour:
   tempMax: 150
   humidMin: 0
   humidMax: 1
+--- !u!1001 &1920043842
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360426323}
+    m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
+    - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_Name
+      value: KapokTree (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.312461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a4ebf55a8ff1f44e91195e85c8400b6, type: 3}
+--- !u!4 &1920043843 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7299572956822128051, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1920043842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1943897975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9432,6 +10441,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 360426323}
     m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
     - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
         type: 3}
       propertyPath: m_Name
@@ -9500,6 +10514,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 360426323}
     m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
     - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
         type: 3}
       propertyPath: m_Name
@@ -9681,17 +10700,17 @@ PrefabInstance:
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.948552
+      value: -4.022
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7224607
+      value: -3.394
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.8632448
+      value: -2.076
       objectReference: {fileID: 0}
     - target: {fileID: 4835246757451403458, guid: e1d5100512feb6144a8d688b849ea8d9,
         type: 3}
@@ -9951,6 +10970,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 360426323}
     m_Modifications:
+    - target: {fileID: 253583603901567780, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
+        type: 3}
+      propertyPath: biomeController
+      value: 
+      objectReference: {fileID: 556791507}
     - target: {fileID: 4279927049215962991, guid: 4a4ebf55a8ff1f44e91195e85c8400b6,
         type: 3}
       propertyPath: m_Name
