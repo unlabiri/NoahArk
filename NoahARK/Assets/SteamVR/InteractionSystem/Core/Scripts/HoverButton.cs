@@ -16,6 +16,8 @@ namespace Valve.VR.InteractionSystem
     {
         public Transform movingPart;
 
+
+
         public Vector3 localMoveDistance = new Vector3(0, -0.1f, 0);
 
         [Range(0, 1)]
