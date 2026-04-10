@@ -46,6 +46,11 @@ public class LeverInteractable : MonoBehaviour
     private void OnAttachedToHand(Hand hand)
     {
         holdingHand = hand;
+        hand.AttachObject(
+            gameObject,
+            GrabTypes.Grip,
+            Hand.AttachmentFlags.TurnOnKinematic | 
+            Hand.AttachmentFlags.DetachFromOtherHand);
     }
 
     private void OnDetachedFromHand(Hand hand)

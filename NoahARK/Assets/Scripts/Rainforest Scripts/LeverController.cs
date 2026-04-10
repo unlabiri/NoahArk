@@ -25,7 +25,7 @@ public class LeverController : MonoBehaviour
     void Update()
     {
 
-        if (leverTransform = null)
+        if (leverTransform == null)
         {
             return;
         }

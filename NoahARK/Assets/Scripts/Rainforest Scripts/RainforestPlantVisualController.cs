@@ -9,6 +9,7 @@ public class RainforestPlantVisualController : MonoBehaviour
 
     [SerializeField] private GameObject healthyModel;
     [SerializeField] private GameObject wiltedModel;
+    
 
     [SerializeField] private Renderer healthyRenderer;
     [SerializeField] private Renderer wiltedRenderer;
@@ -22,7 +23,8 @@ public class RainforestPlantVisualController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(plant == null)
+        
+        if (plant == null)
         {
             plant = GetComponent<RainforestPlantEntity>();
 
