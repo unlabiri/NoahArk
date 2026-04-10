@@ -28,6 +28,31 @@ public class VRWirePlug : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
         line.positionCount = 2;
+
+        // NEW: Automatically paint the wire based on the dropdown selection!
+        switch (myColor)
+        {
+            case WireColor.Red:
+                line.material.color = Color.red;
+                line.startColor = Color.red;
+                line.endColor = Color.red;
+                break;
+            case WireColor.Blue:
+                line.material.color = Color.blue;
+                line.startColor = Color.blue;
+                line.endColor = Color.blue;
+                break;
+            case WireColor.Yellow:
+                line.material.color = Color.yellow;
+                line.startColor = Color.yellow;
+                line.endColor = Color.yellow;
+                break;
+            case WireColor.Green:
+                line.material.color = Color.green;
+                line.startColor = Color.green;
+                line.endColor = Color.green;
+                break;
+        }
     }
 
     void Update()
@@ -35,6 +60,13 @@ public class VRWirePlug : MonoBehaviour
         // Draw the stretchy visual wire every frame
         line.SetPosition(0, wireBase.position);
         line.SetPosition(1, transform.position);
+
+        // NEW: If the player grabs the plug while it is locked in, un-plug it!
+        if (interactable.attachedToHand && isPluggedIn)
+        {
+            isPluggedIn = false;
+            rb.isKinematic = false; // Turn physics back on so it can move
+        }
 
         // Snap back logic: If dropped and NOT plugged in, teleport back to start
         if (!interactable.attachedToHand && !isPluggedIn)

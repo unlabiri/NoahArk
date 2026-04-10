@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class RainforestTempHumidController : MonoBehaviour
 {
+    public RainforestBiomeController biomeController;
+    public RainforestBiomeState biomeState;
     // Start is called before the first frame update
     public ControlMode currentMode = ControlMode.Temperature;
-    public float temperature;
-    public float humidity;
+ 
 
+    void Start()
+    {
+        biomeState = biomeController.State;
+    }
 
     public void SetMode(ControlMode mode)
     {
         currentMode = mode;
+    }
+
+    public void SetTemperature(float temp)
+    {
+        biomeState.temperature = temp;
+    }
+
+    public void SetHumidity(float hum)
+    {
+        biomeState.humidity = hum;
     }
 
     public enum ControlMode

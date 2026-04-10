@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d59a042b46322646b34d3e65a744fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredColor: 0
+  requiredColor: 1
   mainBox: {fileID: 526242387}
 --- !u!135 &26725777
 SphereCollider:
@@ -190,7 +190,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &26725778
 MeshRenderer:
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d59a042b46322646b34d3e65a744fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredColor: 0
+  requiredColor: 2
   mainBox: {fileID: 526242387}
 --- !u!135 &296867950
 SphereCollider:
@@ -337,7 +337,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &296867951
 MeshRenderer:
@@ -518,6 +518,7 @@ GameObject:
   - component: {fileID: 526242384}
   - component: {fileID: 526242383}
   - component: {fileID: 526242387}
+  - component: {fileID: 526242388}
   m_Layer: 0
   m_Name: FaultPanel
   m_TagString: Untagged
@@ -637,6 +638,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBroken: 0
   totalWiresToFix: 4
+  physicalSockets:
+  - {fileID: 681150178}
+  - {fileID: 296867948}
+  - {fileID: 1799108147}
+  - {fileID: 26725775}
   onBoxBroken:
     m_PersistentCalls:
       m_Calls:
@@ -691,6 +697,22 @@ MonoBehaviour:
   onBoxFixed:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &526242388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526242382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bd62047fdfe314ca2bda1f41d8c111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minCheckInterval: 2
+  maxCheckInterval: 5
+  faultChance: 100
+  wiringBox: {fileID: 526242387}
 --- !u!1 &681150177
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +781,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &681150181
 MeshRenderer:
@@ -825,15 +847,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.022
+      value: 8.443
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.922
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.025
+      value: -0.609
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1076,13 +1098,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.20111838
-        value: 0.2012577
+        time: 0.20949546
+        value: 0.10062599
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1567,13 +1589,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.20111838
-        value: 0.2012577
+        time: 0.20391074
+        value: 0.10062599
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2092,13 +2114,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.20111838
-        value: 0.2012577
+        time: 0.20949546
+        value: 0.11321449
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -2417,7 +2439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d59a042b46322646b34d3e65a744fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredColor: 0
+  requiredColor: 3
   mainBox: {fileID: 526242387}
 --- !u!135 &1799108149
 SphereCollider:
@@ -2438,7 +2460,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1799108150
 MeshRenderer:
@@ -2576,13 +2598,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0.20111838
-        value: 0.2012577
+        value: 0.119501114
         inSlope: 0
         outSlope: 0
         tangentMode: 0
