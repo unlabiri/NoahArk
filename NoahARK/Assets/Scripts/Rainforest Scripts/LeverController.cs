@@ -1,39 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LeverController : MonoBehaviour
 {
-
-    public Transform leverTransform;
-
+    [Header("References")]
+    public LeverInteractable leverInteractable;
     public RainforestTempHumidController controller;
 
-    public float leverMinAngle = -45f;
-    public float leverMaxAngle = 45f;
-
-    // temp range
+    [Header("Temperature Range")]
     public float tempMin = 50f;
     public float tempMax = 150f;
 
-    // humidity range
-    public float humidMin = 0;
-    public float humidMax = 1;
-    // Start is called before the first frame update
+    [Header("Humidity Range")]
+    public float humidMin = 0f;
+    public float humidMax = 1f;
 
-    // Update is called once per frame
     void Update()
     {
+        if (leverInteractable == null || controller == null) return;
 
-        if (leverTransform == null)
-        {
-            return;
-        }
+        float normalized = leverInteractable.NormalizedValue;
 
-        float angle = GetLeverAngle();
-        float normalized = Mathf.InverseLerp(leverMinAngle, leverMaxAngle, angle);
-
-        switch(controller.currentMode)
+        switch (controller.currentMode)
         {
             case RainforestTempHumidController.ControlMode.Temperature:
                 controller.SetTemperature(Mathf.Lerp(tempMin, tempMax, normalized));
@@ -42,11 +29,5 @@ public class LeverController : MonoBehaviour
                 controller.SetHumidity(Mathf.Lerp(humidMin, humidMax, normalized));
                 break;
         }
-    }
-
-    private float GetLeverAngle()
-    {
-       
-        return 0;
     }
 }
