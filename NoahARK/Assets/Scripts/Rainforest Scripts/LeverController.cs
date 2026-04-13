@@ -23,10 +23,10 @@ public class LeverController : MonoBehaviour
         switch (controller.currentMode)
         {
             case RainforestTempHumidController.ControlMode.Temperature:
-                controller.SetTemperature(Mathf.Lerp(tempMin, tempMax, normalized));
+                controller.SetTemperature(Mathf.Lerp(tempMax, tempMin, normalized));
                 break;
             case RainforestTempHumidController.ControlMode.Humidity:
-                controller.SetHumidity(Mathf.Lerp(humidMin, humidMax, normalized));
+                controller.SetHumidity(Mathf.Lerp(humidMax, humidMin, normalized));
                 break;
         }
     }
