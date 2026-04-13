@@ -1,110 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1561602461092921787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2509366510054339779}
-  - component: {fileID: 8720267632985724855}
-  - component: {fileID: 7522899401243164166}
-  - component: {fileID: 7036928867905178856}
-  m_Layer: 0
-  m_Name: WiltedFern
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2509366510054339779
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561602461092921787}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: -0.46, z: -1.195}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4835246757451403458}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8720267632985724855
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561602461092921787}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7522899401243164166
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561602461092921787}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7036928867905178856
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561602461092921787}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4807059843114417824
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4835246757451403458}
   - component: {fileID: 3557797993784077017}
-  - component: {fileID: 8100385405044494676}
   - component: {fileID: 4197475894845271125}
   - component: {fileID: 4873612185090444020}
+  - component: {fileID: 5564471322170276792}
   m_Layer: 0
   m_Name: RainforestFern
   m_TagString: Untagged
@@ -138,8 +33,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8873096972039969198}
-  - {fileID: 2509366510054339779}
   - {fileID: 5338770890033881303}
   - {fileID: 7923866625683812622}
   m_Father: {fileID: 0}
@@ -156,43 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cb20f3a7b4c554fbbcd8a1b260a622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 8100385405044494676}
+  plant: {fileID: 0}
   healthyModel: {fileID: 4709867434274339437}
   wiltedModel: {fileID: 7403049285782383540}
-  healthyRenderer: {fileID: 3987149380175069652}
-  wiltedRenderer: {fileID: 5591717553350018875}
+  healthyRenderer: {fileID: 6453657167246591651}
+  wiltedRenderer: {fileID: 9110740677603202938}
   healthyMaterial: {fileID: 2100000, guid: 9ba72e94c1d82144a92315782958c739, type: 2}
   wiltedMaterial: {fileID: 2100000, guid: fd0d9cd069255a04aaca37518e4e467f, type: 2}
   deadMaterial: {fileID: 2100000, guid: f7c28e54b7bf32a47b8bb2903d3bd519, type: 2}
---- !u!114 &8100385405044494676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4807059843114417824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9536fb86b6bee479bb4f1fa5fd5f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantState:
-    stage: 0
-    isAlive: 1
-    timeInUnsafeTemperature: 0
-    timeInUnsafeHumidity: 0
-    isInfected: 0
-    timeInfected: 0
-    health: 100
-  biomeController: {fileID: 0}
-  maxSafeTemperature: 50
-  minSafeTemperature: 100
-  maxSafeHumidity: 0.88
-  minSafeHumidity: 0.77
-  damageIntervalTemperature: 10
-  damageIntervalHumidity: 10
-  damageIntervalInfection: 10
-  propagateInfectionTime: 25
 --- !u!135 &4197475894845271125
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -241,111 +105,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &8992806526630997633
-GameObject:
+--- !u!114 &5564471322170276792
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8873096972039969198}
-  - component: {fileID: 3364392371202021880}
-  - component: {fileID: 3302982329805075664}
-  - component: {fileID: 8664898493971933603}
-  m_Layer: 0
-  m_Name: HealthyFern
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8873096972039969198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8992806526630997633}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.03, y: -0.46, z: -1.195}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4835246757451403458}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3364392371202021880
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8992806526630997633}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3302982329805075664
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8992806526630997633}
+  m_GameObject: {fileID: 4807059843114417824}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8664898493971933603
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8992806526630997633}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9536fb86b6bee479bb4f1fa5fd5f82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantState:
+    stage: 0
+    isAlive: 1
+    timeInUnsafeTemperature: 0
+    timeInUnsafeHumidity: 0
+    isInfected: 0
+    timeInfected: 0
+    health: 100
+  biomeController: {fileID: 0}
+  maxSafeTemperature: 100
+  minSafeTemperature: 50
+  maxSafeHumidity: 0.88
+  minSafeHumidity: 0.77
+  damageIntervalTemperature: 10
+  damageIntervalHumidity: 10
+  damageIntervalInfection: 10
+  propagateInfectionTime: 25
 --- !u!1001 &5592809569309361980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -518,6 +306,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5592809569309361980}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &6453657167246591651 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1446317025356153247, guid: 6d1f2bb3a9ada1a448e6549c26eaf645,
+    type: 3}
+  m_PrefabInstance: {fileID: 5592809569309361980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7673434251530442469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -687,6 +481,12 @@ MeshRenderer:
 --- !u!4 &7923866625683812622 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e3f05f4687be0ef47a0f1ddcacf9edf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7673434251530442469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9110740677603202938 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1446317025356153247, guid: e3f05f4687be0ef47a0f1ddcacf9edf1,
     type: 3}
   m_PrefabInstance: {fileID: 7673434251530442469}
   m_PrefabAsset: {fileID: 0}

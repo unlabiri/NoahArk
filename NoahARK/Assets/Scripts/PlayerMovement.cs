@@ -63,4 +63,9 @@ public class VRPlayerMovement : MonoBehaviour
 
         controller.Move(move * Time.deltaTime);
     }
+
+    public void ResetVerticalVelocity()
+    {
+        verticalVelocity = 0f;
+    }
 }
