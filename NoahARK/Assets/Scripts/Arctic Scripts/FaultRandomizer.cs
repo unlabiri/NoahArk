@@ -3,15 +3,13 @@ using UnityEngine;
 public class FaultRandomizer : MonoBehaviour
 {
     [Header("Randomness Settings")]
-    [Tooltip("Minimum seconds before trying to trigger a fault.")]
     public float minCheckInterval = 10f;
-    [Tooltip("Maximum seconds before trying to trigger a fault.")]
     public float maxCheckInterval = 30f;
-    [Tooltip("Percentage chance (0-100) that a fault actually happens when the timer goes off.")]
     [Range(0, 100)] public int faultChance = 50;
 
-    [Header("The Fault to Break")]
+    [Header("The Ship Faults")]
     public WiringBox wiringBox;
+    public TemperatureFault tempPipe; // NEW: Slot for your AC pipe
 
     private float timer;
     private float currentInterval;
@@ -23,25 +21,30 @@ public class FaultRandomizer : MonoBehaviour
 
     void Update()
     {
-        // Only run the timer if the box isn't already broken
-        if (wiringBox != null && !wiringBox.isBroken)
-        {
-            timer += Time.deltaTime;
+        timer += Time.deltaTime;
 
-            if (timer >= currentInterval)
-            {
-                RollTheDice();
-                SetNextInterval();
-            }
+        if (timer >= currentInterval)
+        {
+            RollTheDice();
+            SetNextInterval();
         }
     }
 
     void RollTheDice()
     {
-        int roll = Random.Range(0, 100);
-        if (roll < faultChance)
+        if (Random.Range(0, 100) < faultChance)
         {
-            wiringBox.TriggerFault();
+            // Flip a coin (0 or 1) to pick which system breaks
+            int whichFault = Random.Range(0, 2);
+
+            if (whichFault == 0 && wiringBox != null && !wiringBox.isBroken)
+            {
+                wiringBox.TriggerFault();
+            }
+            else if (whichFault == 1 && tempPipe != null && !tempPipe.isBroken)
+            {
+                tempPipe.TriggerFault();
+            }
         }
     }
 
