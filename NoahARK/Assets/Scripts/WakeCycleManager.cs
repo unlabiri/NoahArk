@@ -3,15 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Defines a point in time (year + seconds remaining in the wake phase)
+/// at which OnScheduledEvent fires. Add entries in the Inspector.
+/// Note: secondsRemaining counts DOWN from wakeDurationSeconds.
+/// e.g. year=1, secondsRemaining=20 fires when 20s are left in year 1's wake phase.
+/// </summary>
+[Serializable]
+public class WakeCycleScheduledEvent
+{
+    public int year = 1;
+    public float secondsRemaining = 20f;
+    public string targetBiome = "";
+    [HideInInspector] public bool hasTriggered = false;
+}
+
 public class WakeCycleManager : MonoBehaviour
 {
-    [SerializeField] private float wakeDurationSeconds = 30f;
-    [SerializeField] private float sleepDurationSeconds = 10f;
+    [SerializeField] private float wakeDurationSeconds = 480f;
+    [SerializeField] private float sleepDurationSeconds = 20f;
     public GameState State { get; private set; }
 
     public event Action<WakePhase> OnStateChange;
     public event Action<int> OnYearChange;
-    public event Action<float> OnSecondsRemaining;
+
+    [Header("Scheduled Events")]
+    [SerializeField] private List<WakeCycleScheduledEvent> scheduledEvents = new();
+
+    /// <summary>
+    /// Fires when a scheduled event's year + secondsRemaining threshold is crossed.
+    /// Subscribers (e.g. FaultManager) hook into this to know when to act.
+    /// </summary>
+    public event Action<WakeCycleScheduledEvent> OnScheduledEvent;
 
     private void Awake()
     {
@@ -37,10 +60,10 @@ public class WakeCycleManager : MonoBehaviour
         {
             State.sleepSecondsRemaining -= Time.deltaTime;
 
-            if(State.sleepSecondsRemaining < 0)
+            if (State.sleepSecondsRemaining < 0)
             {
                 StartWakeCycle();
-                
+
                 // when the new awake cycle is started this will be considered a new year
                 State.currentYear += 1;
                 OnYearChange?.Invoke(State.currentYear);
@@ -52,6 +75,19 @@ public class WakeCycleManager : MonoBehaviour
         if (State.wakePhase == WakePhase.Awake)
         {
             State.wakeSecondsRemaining -= Time.deltaTime;
+
+            // Check all scheduled events — fire any whose threshold we've just crossed
+            foreach (var e in scheduledEvents)
+            {
+                if (!e.hasTriggered
+                    && e.year == State.currentYear
+                    && State.wakeSecondsRemaining <= e.secondsRemaining)
+                {
+                    e.hasTriggered = true;
+                    OnScheduledEvent?.Invoke(e);
+                }
+            }
+
             if (State.wakeSecondsRemaining < 0)
             {
                 State.wakeSecondsRemaining = 0f;
@@ -59,9 +95,9 @@ public class WakeCycleManager : MonoBehaviour
                 OnStateChange?.Invoke(State.wakePhase);
             }
         }
-        
 
-        
+
+
         // after max years the game is completed and the wake cycle no longer needs to go on
         if (State.currentYear > State.maxYears)
         {
@@ -75,6 +111,11 @@ public class WakeCycleManager : MonoBehaviour
     {
         State.wakePhase = WakePhase.Awake;
         State.wakeSecondsRemaining = wakeDurationSeconds;
+
+        // Reset triggers for the new year so they can fire again if scheduled
+        foreach (var e in scheduledEvents)
+            if (e.year == State.currentYear)
+                e.hasTriggered = false;
     }
 
     void StartSleepCycle()
@@ -85,5 +126,3 @@ public class WakeCycleManager : MonoBehaviour
 
     }
 }
-
-

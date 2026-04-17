@@ -17,7 +17,7 @@ public class LeverController : MonoBehaviour
     void Update()
     {
         if (leverInteractable == null || controller == null) return;
-
+        if (!leverInteractable.IsBeingHeld) return;
         float normalized = leverInteractable.NormalizedValue;
 
         switch (controller.currentMode)

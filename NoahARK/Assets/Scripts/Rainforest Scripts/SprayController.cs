@@ -10,10 +10,21 @@ public class SprayController : MonoBehaviour
     [SerializeField] private ParticleSystem particles;
     public SteamVR_Action_Boolean grabAction;
     private Interactable interactable;
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
     // Start is called before the first frame update
     void Start()
     {
         interactable = GetComponent<Interactable>();
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+    }
+
+    private void OnDetachedFromHand(Hand hand)
+    {
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        particles.Stop();
     }
 
     // Update is called once per frame
