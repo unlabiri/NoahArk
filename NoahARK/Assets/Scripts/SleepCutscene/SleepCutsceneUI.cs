@@ -6,7 +6,7 @@ using TMPro;
 public class SleepCutsceneUI : MonoBehaviour
 {
     [Header("Fade")]
-    [SerializeField] private CanvasGroup fadePanel; // A full-screen black Image inside a CanvasGroup
+    [SerializeField] private CanvasGroup fadePanel;
 
     [Header("Stats UI")]
     [SerializeField] private GameObject statsPanel;
@@ -15,14 +15,13 @@ public class SleepCutsceneUI : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] public WakeCycleManager wakeCycleManager;
-    [SerializeField] public RainforestBiomeController biomeController;
+    [SerializeField] public RainforestBiomeController rainforestBiomeController;
+    [SerializeField] public AquaticBiomeController aquaticBiomeController; 
 
     private void Awake()
     {
         fadePanel.alpha = 0f;
         statsPanel.SetActive(false);
-
-
     }
 
     public IEnumerator FadeOut(float duration)
@@ -35,16 +34,21 @@ public class SleepCutsceneUI : MonoBehaviour
         yield return DoFade(1f, 0f, duration);
     }
 
-
     public IEnumerator ShowStats()
     {
-        var RainforestbiomeState = biomeController.State;
+        var rainforestState = rainforestBiomeController.State;
+        var aquaticState = aquaticBiomeController.State;
         var worldState = wakeCycleManager.State;
-        statsText.text = "Year " + worldState.currentYear + " complete.\n\nBiome Health Summary:\nRainforest Biome: " + RainforestbiomeState.health + "\nCoral Reef Biome: \nArctic Biome: ";
+
+        statsText.text =
+            "Year " + worldState.currentYear + " complete.\n\n" +
+            "Biome Health Summary:\n" +
+            "Rainforest Biome: " + rainforestState.health + "\n" +
+            "Coral Reef Biome: " + aquaticState.health + "\n" +
+            "Arctic Biome: ";
+
         statsPanel.SetActive(true);
-
         yield return new WaitForSeconds(cutSceneDuration);
-
         statsPanel.SetActive(false);
     }
 
