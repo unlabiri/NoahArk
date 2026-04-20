@@ -6,14 +6,30 @@ public class AquaticBiomeController : MonoBehaviour
     [SerializeField] private AquaticBiomeState state = new AquaticBiomeState();
     public AquaticBiomeState State => state;
 
-    [SerializeField] private List<AquaticCoralEntity> corals = new();
+    [Tooltip("Drag your 'Corals' parent GameObject here.")]
+    [SerializeField] private Transform coralParent;
+
+    [Header("Shared Coral Materials — set once here, all corals use these")]
+    public Material healthyMaterial;
+    public Material bleached1Material;
+    public Material bleached2Material;
+    public Material deadMaterial;
+
+    private List<AquaticCoralEntity> corals = new();
 
     private void Start()
     {
-        foreach (var coral in corals)
+        if (coralParent != null)
         {
-            if (coral != null)
-                coral.Initialize(this);
+            var found = coralParent.GetComponentsInChildren<AquaticCoralEntity>();
+            foreach (var coral in found)
+            {
+                if (coral != null)
+                {
+                    corals.Add(coral);
+                    coral.Initialize(this);
+                }
+            }
         }
 
         RefreshCoralCounts();
@@ -29,7 +45,6 @@ public class AquaticBiomeController : MonoBehaviour
     public void RegisterCoral(AquaticCoralEntity coral)
     {
         if (coral == null || corals.Contains(coral)) return;
-
         corals.Add(coral);
         RefreshCoralCounts();
         UpdateBiomeHealthState();
@@ -44,7 +59,6 @@ public class AquaticBiomeController : MonoBehaviour
         foreach (var coral in corals)
         {
             if (coral == null) continue;
-
             if (coral.coralState.isAlive)
                 State.totalAliveCoralCount++;
             else
@@ -52,7 +66,6 @@ public class AquaticBiomeController : MonoBehaviour
         }
     }
 
-    // Same percentage thresholds as the rainforest
     private void UpdateBiomeHealthState()
     {
         if (State.totalCoralCount <= 0)
