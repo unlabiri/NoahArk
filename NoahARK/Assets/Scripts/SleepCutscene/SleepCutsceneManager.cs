@@ -9,6 +9,8 @@ public class SleepCutsceneManager : MonoBehaviour
     [SerializeField] private Transform mapCenter;       // Drag in: your map center empty GameObject
     [SerializeField] private SleepCutsceneUI cutsceneUI;
 
+    public AudioSource bootingDown;
+
     [Header("Locomotion")]
     [SerializeField] private MonoBehaviour[] locomotionComponents; // PlayerMovement, Snap Turn
 
@@ -27,12 +29,20 @@ public class SleepCutsceneManager : MonoBehaviour
     {
         if (phase == WakePhase.Sleeping)
             StartCoroutine(SleepSequence());
+        else if (phase == WakePhase.Completed)
+        {
+            StartCoroutine(EndingSequence());
+        }
+
     }
 
     private IEnumerator SleepSequence()
     {
         SetLocomotion(false);
-
+        if (bootingDown != null)
+        {
+            bootingDown.Play();
+        }
         yield return cutsceneUI.FadeOut(1.5f);
 
         TeleportToCenter();
@@ -42,6 +52,18 @@ public class SleepCutsceneManager : MonoBehaviour
         yield return cutsceneUI.FadeIn(1.5f);
 
         SetLocomotion(true);
+    }
+
+    private IEnumerator EndingSequence()
+    {
+        SetLocomotion(false);
+        yield return cutsceneUI.FadeOut(1.5f);
+
+        TeleportToCenter();
+
+        yield return cutsceneUI.ShowEnding();
+
+        
     }
 
     private void TeleportToCenter()
