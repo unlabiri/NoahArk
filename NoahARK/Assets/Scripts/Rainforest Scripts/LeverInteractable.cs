@@ -16,6 +16,8 @@ public class LeverInteractable : MonoBehaviour
     private Quaternion neutralRotation;
     private Rigidbody rb;
 
+    public bool IsBeingHeld => holdingHand != null;
+
     public float NormalizedValue =>
         Mathf.InverseLerp(minAngle, maxAngle, currentAngle);
 

@@ -7,7 +7,7 @@ public class RainforestBiomeController : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private RainforestBiomeState state = new RainforestBiomeState();
     public RainforestBiomeState State => state;
-    [SerializeField] private List<RainforestPlantEntity> plants = new();
+    [SerializeField] public List<RainforestPlantEntity> plants = new();
     private void Start()
     {
         foreach (var plant in plants)
