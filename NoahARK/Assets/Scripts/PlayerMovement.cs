@@ -13,6 +13,8 @@ public class VRPlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     private float speed;
 
+    public FootstepManager footstepManager;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -46,6 +48,9 @@ public class VRPlayerMovement : MonoBehaviour
             direction = Quaternion.Euler(headRotation) * direction;
 
             move = direction * speed;
+        } else
+        {
+            speed = 0f;
         }
 
         // Gravity
@@ -62,6 +67,9 @@ public class VRPlayerMovement : MonoBehaviour
         move.y = verticalVelocity;
 
         controller.Move(move * Time.deltaTime);
+
+        if (footstepManager != null)
+            footstepManager.OnMovementUpdate(speed, isSprinting, controller.isGrounded);
     }
 
     public void ResetVerticalVelocity()

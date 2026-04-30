@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class CageDoorController : MonoBehaviour
 {
@@ -13,9 +14,20 @@ public class CageDoorController : MonoBehaviour
     [SerializeField] private bool startsOpen = false;
     [SerializeField] private bool locked = false;
 
+    [Header("VR Proximity")]
+    [Tooltip("Tag applied to both SteamVR hand GameObjects")]
+    [SerializeField] private string handTag = "Hand";
+    [Tooltip("Close the door again after hand leaves")]
+    [SerializeField] private bool closeOnHandExit = false;
+
+    [Header("Feedback")]
+    [SerializeField] private AudioSource openSound;
+    [SerializeField] private AudioSource closeSound;
+
     private Quaternion closedRotation;
     private Quaternion openRotation;
     private bool isOpen;
+    private int handsNearby = 0; // track both hands independently
 
     private void Start()
     {
@@ -28,18 +40,12 @@ public class CageDoorController : MonoBehaviour
 
         closedRotation = doorPivot.localRotation;
         openRotation = closedRotation * Quaternion.Euler(0f, openAngle, 0f);
-
         isOpen = startsOpen;
         doorPivot.localRotation = isOpen ? openRotation : closedRotation;
     }
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TryToggleDoor();
-        }
         Quaternion targetRotation = isOpen ? openRotation : closedRotation;
         doorPivot.localRotation = Quaternion.Slerp(
             doorPivot.localRotation,
@@ -48,45 +54,54 @@ public class CageDoorController : MonoBehaviour
         );
     }
 
+    // ── VR Proximity ─────────────────────────────────────────────────────────
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Hand>() == null) return;
+
+        handsNearby++;
+        OpenDoor();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Hand>() == null) return;
+
+        handsNearby = Mathf.Max(0, handsNearby - 1);
+
+        if (closeOnHandExit && handsNearby == 0)
+            CloseDoor();
+    }
+    // ── Public API (unchanged — anything else in your project can still call these) ──
+
     public void TryToggleDoor()
     {
-        if (locked)
-        {
-            Debug.Log("Door is locked.");
-            return;
-        }
-
+        if (locked) { Debug.Log("Door is locked."); return; }
         isOpen = !isOpen;
     }
 
     public void OpenDoor()
     {
         if (locked) return;
-        isOpen = true;
+        if (!isOpen)
+        {
+            isOpen = true;
+            if (openSound != null) openSound.Play();
+        }
     }
 
     public void CloseDoor()
     {
-        isOpen = false;
+        if (isOpen)
+        {
+            isOpen = false;
+            if (closeSound != null) closeSound.Play();
+        }
     }
 
-    public void LockDoor()
-    {
-        locked = true;
-    }
-
-    public void UnlockDoor()
-    {
-        locked = false;
-    }
-
-    public bool IsOpen()
-    {
-        return isOpen;
-    }
-
-    public bool IsLocked()
-    {
-        return locked;
-    }
+    public void LockDoor() => locked = true;
+    public void UnlockDoor() => locked = false;
+    public bool IsOpen() => isOpen;
+    public bool IsLocked() => locked;
 }

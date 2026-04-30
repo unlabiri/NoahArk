@@ -6,12 +6,13 @@ public class AquaInvasionFault : AquaFaultBase
     public int controlThreshold = 1;
     public int yearsToMaintainControl = 2;
 
+    [Header("Invasive Species")]
+    [SerializeField] private GameObject starfish;
+
     [Header("Alarm Light Visuals")]
     [SerializeField] private Renderer alarmRenderer;
     [SerializeField] private Light alarmLight;
-
     [SerializeField] private string glowingMaterialName = "lambert2";
-
     [SerializeField] private Color inactiveEmission = Color.green;
     [SerializeField] private Color activeEmission = Color.red;
     [SerializeField] private Color resolvedEmission = Color.green;
@@ -25,7 +26,6 @@ public class AquaInvasionFault : AquaFaultBase
         if (alarmRenderer != null)
         {
             Material[] mats = alarmRenderer.materials;
-
             for (int i = 0; i < mats.Length; i++)
             {
                 if (mats[i] != null && mats[i].name.Contains(glowingMaterialName))
@@ -35,7 +35,6 @@ public class AquaInvasionFault : AquaFaultBase
                     break;
                 }
             }
-
             if (targetMaterial == null && mats.Length > 0)
             {
                 Debug.LogWarning($"{name}: Could not find material '{glowingMaterialName}', defaulting to first material.");
@@ -44,6 +43,7 @@ public class AquaInvasionFault : AquaFaultBase
             }
         }
 
+        if (starfish != null) starfish.SetActive(false);
         UpdateAlarmVisual();
     }
 
@@ -51,14 +51,14 @@ public class AquaInvasionFault : AquaFaultBase
     {
         base.Activate();
         controlStreak = 0;
+        if (starfish != null) starfish.SetActive(true);
         UpdateAlarmVisual();
         Debug.Log($"{name}: Invasive fault activated.");
     }
 
     protected override void OnNewYear(int newYear)
     {
-        if (state != FaultState.Active)
-            return;
+        if (state != FaultState.Active) return;
 
         stress += stressPerYear;
 
@@ -68,12 +68,14 @@ public class AquaInvasionFault : AquaFaultBase
         if (controlStreak >= yearsToMaintainControl)
         {
             state = FaultState.Resolved;
+            if (starfish != null) starfish.SetActive(false);
             Debug.Log($"{name}: Invasive fault resolved.");
         }
 
         if (stress >= failAtStress)
         {
             state = FaultState.Failed;
+            if (starfish != null) starfish.SetActive(false);
             Debug.Log($"{name}: Invasive fault failed.");
         }
 
@@ -82,47 +84,39 @@ public class AquaInvasionFault : AquaFaultBase
 
     public void RemoveInvasive(int amount)
     {
-        if (state != FaultState.Active)
-            return;
+        if (state != FaultState.Active) return;
 
         stress = Mathf.Max(0, stress - amount);
         RecomputeSeverity();
 
         if (stress <= 0)
+        {
             state = FaultState.Resolved;
+            if (starfish != null) starfish.SetActive(false);
+        }
 
         UpdateAlarmVisual();
     }
 
     public void ResolveInvasiveFault()
     {
-        state = FaultState.Inactive;
+        state = FaultState.Resolved;
         stress = 0;
         controlStreak = 0;
-
+        if (starfish != null) starfish.SetActive(false);
         Debug.Log($"{name}: Invasive fault cleared.");
-
         UpdateAlarmVisual();
     }
 
     private void UpdateAlarmVisual()
     {
         Color currentColor = inactiveEmission;
-
         switch (state)
         {
-            case FaultState.Inactive:
-                currentColor = inactiveEmission;
-                break;
-            case FaultState.Active:
-                currentColor = activeEmission;
-                break;
-            case FaultState.Resolved:
-                currentColor = resolvedEmission;
-                break;
-            case FaultState.Failed:
-                currentColor = failedEmission;
-                break;
+            case FaultState.Inactive: currentColor = inactiveEmission; break;
+            case FaultState.Active: currentColor = activeEmission; break;
+            case FaultState.Resolved: currentColor = resolvedEmission; break;
+            case FaultState.Failed: currentColor = failedEmission; break;
         }
 
         if (targetMaterial != null)

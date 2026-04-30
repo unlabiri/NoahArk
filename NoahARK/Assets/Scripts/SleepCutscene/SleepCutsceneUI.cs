@@ -16,7 +16,8 @@ public class SleepCutsceneUI : MonoBehaviour
     [Header("Stats")]
     [SerializeField] public WakeCycleManager wakeCycleManager;
     [SerializeField] public RainforestBiomeController rainforestBiomeController;
-    [SerializeField] public AquaticBiomeController aquaticBiomeController; 
+    [SerializeField] public AquaticBiomeController aquaticBiomeController;
+
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class SleepCutsceneUI : MonoBehaviour
         var aquaticState = aquaticBiomeController.State;
         var worldState = wakeCycleManager.State;
 
+       
         statsText.text =
             "Year " + worldState.currentYear + " complete.\n\n" +
             "Biome Health Summary:\n" +
@@ -50,6 +52,26 @@ public class SleepCutsceneUI : MonoBehaviour
         statsPanel.SetActive(true);
         yield return new WaitForSeconds(cutSceneDuration);
         statsPanel.SetActive(false);
+    }
+
+    public IEnumerator ShowEnding()
+    {
+        var rainforestState = rainforestBiomeController.State;
+        var aquaticState = aquaticBiomeController.State;
+        var worldState = wakeCycleManager.State;
+
+        statsText.text =
+            "Year " + worldState.currentYear + " complete.\n\n" +
+            "Biome Health Summary:\n" +
+            "Rainforest Biome: " + rainforestState.health + "\n" +
+            "Coral Reef Biome: " + aquaticState.health + "\n" +
+            "Arctic Biome: ";
+
+        statsPanel.SetActive(true);
+        yield return new WaitForSeconds(3f);
+
+        statsText.text = "You have completed your mission.";
+        yield break;
     }
 
     private IEnumerator DoFade(float from, float to, float duration)

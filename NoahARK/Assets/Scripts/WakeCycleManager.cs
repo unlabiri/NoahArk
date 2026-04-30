@@ -26,7 +26,10 @@ public class WakeCycleManager : MonoBehaviour
 
     public event Action<WakePhase> OnStateChange;
     public event Action<int> OnYearChange;
+    public event Action<bool> OnComplete;
 
+    private bool _warningPlayed = false;
+    public AudioSource sleepWarning;
     [Header("Scheduled Events")]
     [SerializeField] private List<WakeCycleScheduledEvent> scheduledEvents = new();
 
@@ -53,19 +56,26 @@ public class WakeCycleManager : MonoBehaviour
     void Update()
     {
         // If you have completed the wake phase return the game is over
-        if (State.wakePhase == WakePhase.Completed) return;
+        if (State.wakePhase == WakePhase.Completed)
+        {
+            OnComplete?.Invoke(true);
+            return;
+        } 
+            
         Console.WriteLine(State.currentYear);
         // if the user is in the sleeping phase the timer will countdown  10 seconds until the new awake cycle.
         if (State.wakePhase == WakePhase.Sleeping)
         {
             State.sleepSecondsRemaining -= Time.deltaTime;
+            _warningPlayed = false;
 
             if (State.sleepSecondsRemaining < 0)
             {
+                State.currentYear += 1;
                 StartWakeCycle();
 
                 // when the new awake cycle is started this will be considered a new year
-                State.currentYear += 1;
+                
                 OnYearChange?.Invoke(State.currentYear);
                 OnStateChange?.Invoke(State.wakePhase);
 
@@ -85,6 +95,15 @@ public class WakeCycleManager : MonoBehaviour
                 {
                     e.hasTriggered = true;
                     OnScheduledEvent?.Invoke(e);
+                }
+            }
+
+            // when 30 seconds are remaining in wake state play a warning that you are about to boot down
+            if (!_warningPlayed && State.wakeSecondsRemaining <= 30f)
+            {
+                if (sleepWarning != null)
+                {
+                    sleepWarning.Play();
                 }
             }
 

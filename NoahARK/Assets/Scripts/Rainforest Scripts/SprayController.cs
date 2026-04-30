@@ -7,6 +7,9 @@ using Valve.VR.InteractionSystem;
 
 public class SprayController : MonoBehaviour
 {
+
+    public AudioSource spraySound;
+
     [SerializeField] private ParticleSystem particles;
     public SteamVR_Action_Boolean grabAction;
     private Interactable interactable;
@@ -34,6 +37,7 @@ public class SprayController : MonoBehaviour
         if ((interactable.attachedToHand != null) && grabAction.GetState(SteamVR_Input_Sources.Any))
         {
             particles.Play();
+            spraySound.Play();
         }
         
     }

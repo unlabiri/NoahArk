@@ -9,10 +9,12 @@ namespace Valve.VR.InteractionSystem.Sample
 {
     public class ButtonEffect : MonoBehaviour
     {
+        public AudioSource buttonSound;
         public void OnButtonDown(Hand fromHand)
         {
             ColorSelf(Color.cyan);
             fromHand.TriggerHapticPulse(1000);
+            buttonSound.Play();
         }
 
         public void OnButtonUp(Hand fromHand)

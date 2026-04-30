@@ -9,6 +9,8 @@ public class RainforestFaultManager : MonoBehaviour
     public RainforestBiomeController biomeController;
     private RainforestBiomeState biomeState;
 
+    public AudioSource faultAnnouncement;
+
     void Start()
     {
         if (biomeController != null)
@@ -67,6 +69,9 @@ public class RainforestFaultManager : MonoBehaviour
     {
         if (e.targetBiome != "Rainforest") return;
         int roll = Random.Range(1, 4); // 1, 2, or 3 — note Unity's Range is exclusive on the max
+
+        // when a fault is triggered play an annoucement
+        faultAnnouncement.Play();
 
         if (roll == 1)
             TriggerTemperatureFault();

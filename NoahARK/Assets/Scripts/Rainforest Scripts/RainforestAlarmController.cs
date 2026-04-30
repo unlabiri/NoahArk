@@ -8,9 +8,6 @@ public class RainforestAlarmController : MonoBehaviour
     [SerializeField] public RainforestBiomeController biomeController;
     [SerializeField] private Renderer alarmRenderer;
 
-    [SerializeField] private Material healthyAlarmMaterial;
-    [SerializeField] private Material vulnerableAlarmMaterial;
-    [SerializeField] private Material endangeredAlarmmaterial;
 
     [SerializeField] private Light alarmLight;
     BiomeHealthState lastAppliedStage;
@@ -42,23 +39,18 @@ public class RainforestAlarmController : MonoBehaviour
         switch(stage)
         {
             case BiomeHealthState.Healthy:
-                alarmRenderer.material = healthyAlarmMaterial;
                 alarmLight.color = Color.green;
                 break;
             case BiomeHealthState.Vulnerable:
-                alarmRenderer.material = vulnerableAlarmMaterial;
                 alarmLight.color = Color.yellow;
                 break;
             case BiomeHealthState.Endangered:
-                alarmRenderer.material = endangeredAlarmmaterial;
                 alarmLight.color = Color.red;
                 break;
             case BiomeHealthState.Extinct:
-                alarmRenderer.material = endangeredAlarmmaterial;
                 alarmLight.color = Color.black;
                 break;
             default:
-                alarmRenderer.material = healthyAlarmMaterial;
                 alarmLight.color = Color.black;
                 break;
 
