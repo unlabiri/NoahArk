@@ -26,10 +26,10 @@ public class AquaNutrientRemedyStation : MonoBehaviour
     {
         if (isSolved) return;
 
-        // Keyboard fallback for testing
-        if (Input.GetKey(testKey))
+        // Fixed: use GetKeyDown/GetKeyUp so it doesn't get stuck on
+        if (Input.GetKeyDown(testKey))
             isBeingTurned = true;
-        else if (!isBeingTurned)
+        else if (Input.GetKeyUp(testKey))
             isBeingTurned = false;
 
         if (isBeingTurned)
@@ -52,7 +52,6 @@ public class AquaNutrientRemedyStation : MonoBehaviour
     }
 
     // ── SteamVR hand grip ─────────────────────────────────────────────────
-
     private void HandHoverUpdate(Hand hand)
     {
         if (isSolved) return;
@@ -73,7 +72,6 @@ public class AquaNutrientRemedyStation : MonoBehaviour
     }
 
     // ── Solve ─────────────────────────────────────────────────────────────
-
     private void Solve()
     {
         isSolved = true;
@@ -82,8 +80,15 @@ public class AquaNutrientRemedyStation : MonoBehaviour
         if (crankSound != null) crankSound.Stop();
         if (dingSound != null) dingSound.Play();
 
-        nutrientFault?.AddNutrients(1f);
-        Debug.Log("[NutrientRemedy] Valve turned — nutrient fault resolved!");
+        if (nutrientFault != null)
+        {
+            nutrientFault.AddNutrients(1f);
+            Debug.Log("[NutrientRemedy] Valve turned — nutrient fault resolved!");
+        }
+        else
+        {
+            Debug.LogWarning("[NutrientRemedy] nutrientFault reference is missing!");
+        }
     }
 
     public void ResetValve()
