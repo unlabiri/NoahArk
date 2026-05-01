@@ -101,10 +101,12 @@ public class WakeCycleManager : MonoBehaviour
             // when 30 seconds are remaining in wake state play a warning that you are about to boot down
             if (!_warningPlayed && State.wakeSecondsRemaining <= 30f)
             {
+                Debug.Log("warningPlayed");
                 if (sleepWarning != null)
                 {
                     sleepWarning.Play();
                 }
+                _warningPlayed = true;
             }
 
             if (State.wakeSecondsRemaining < 0)
