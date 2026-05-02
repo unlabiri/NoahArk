@@ -50,13 +50,10 @@ public class InvasiveSpeciesPickup : MonoBehaviour
         isHeld = false;
         rb.isKinematic = false;
         rb.useGravity = true;
-
         rb.velocity = hand.GetTrackedObjectVelocity();
         rb.angularVelocity = hand.GetTrackedObjectAngularVelocity();
-
         Debug.Log($"[InvasivePickup] {name} released.");
     }
-
     private void OnHandHoverBegin(Hand hand)
     {
         hand.TriggerHapticPulse(800);

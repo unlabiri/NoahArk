@@ -27,19 +27,13 @@ public class InvasiveCaptureZone : MonoBehaviour
         bool active = invasionFault.state == AquaFaultBase.FaultState.Active;
         cageIndicatorRenderer.material.color = active ? activeColor : inactiveColor;
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag(invasiveTag)) return;
 
         var pickup = other.GetComponent<InvasiveSpeciesPickup>();
 
-        // Only count it if the player physically carried it in
-        if (pickup == null || !pickup.IsHeld)
-        {
-            Debug.Log($"{name}: Starfish entered cage zone but wasn't held — ignoring.");
-            return;
-        }
+        if (pickup == null || !pickup.IsHeld) return;
 
         if (invasionFault == null)
         {
@@ -53,16 +47,15 @@ public class InvasiveCaptureZone : MonoBehaviour
             return;
         }
 
-        // Cleanly detach from VR hand before disabling
         pickup.ForceDetach();
-
         spawner?.NotifyCapture(other.gameObject);
         invasionFault.ResolveInvasiveFault();
 
         if (captureParticles != null) captureParticles.Play();
-        if (captureSound     != null) captureSound.Play();
+        if (captureSound != null) captureSound.Play();
 
         Debug.Log($"{name}: Invasive species caged successfully!");
         other.gameObject.SetActive(false);
     }
+
 }
