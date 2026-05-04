@@ -70,7 +70,7 @@ public class SleepCutsceneUI : MonoBehaviour
         statsPanel.SetActive(true);
         yield return new WaitForSeconds(3f);
 
-        statsText.text = "You have completed your mission.";
+        statsText.text = "Counting is impossible, but we estimate there are at least 100 billion stars in our own galaxy\r\nAnd for every star, we can generally expect at least one planet.\r\nThat is, at minimum, 100,000,000,000 planets within our galactic neighborhood,\r\nAnd one known to have life.\r\nYet we, as humans, have only just begun to explore the galaxy around us,\r\nAnd we can’t yet rule out life on other planets in our own solar system.\r\nLife could be right around the galactic corner, or could be entirely unique.\r\nBut you are unique.\r\nOut of 8,300,000,000 people, you are the only you that has ever existed or will ever exist.\r\nOut of 100,000,000,000 planets in our galaxy, this is the one you experience.\r\nAn amalgamation of particles that have had a life that will never be lived by another.\r\nThat is worth protecting.\r\nThat is worth living.\r\n";
         yield break;
     }
 

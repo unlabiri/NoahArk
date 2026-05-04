@@ -10,6 +10,7 @@ public class SleepCutsceneManager : MonoBehaviour
     [SerializeField] private SleepCutsceneUI cutsceneUI;
 
     public AudioSource bootingDown;
+    public AudioSource endSong;
 
     [Header("Locomotion")]
     [SerializeField] private MonoBehaviour[] locomotionComponents; // PlayerMovement, Snap Turn
@@ -56,6 +57,11 @@ public class SleepCutsceneManager : MonoBehaviour
 
     private IEnumerator EndingSequence()
     {
+
+        if ( endSong != null)
+        {
+            endSong.Play();
+        }
         SetLocomotion(false);
         yield return cutsceneUI.FadeOut(1.5f);
 
