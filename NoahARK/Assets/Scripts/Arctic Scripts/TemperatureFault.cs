@@ -9,6 +9,7 @@ public class TemperatureFault : MonoBehaviour
     public bool isBroken = false;
     public float currentTemp = 15f;
     public float safeTemp = 15f;
+    public ArcticBiomeController arcticController;
 
     [Tooltip("How many degrees the temp goes up per second when broken.")]
     public float heatRiseSpeed = 3f;
@@ -33,12 +34,20 @@ public class TemperatureFault : MonoBehaviour
     void Update()
     {
         bool isVentBlocked = (ventFault != null && ventFault.isBroken);
+        float currentSpeed = 0;
 
         if (isBroken || isVentBlocked)
         {
-            float currentSpeed = (isBroken && isVentBlocked) ? (heatRiseSpeed * 2) : heatRiseSpeed;
+            currentSpeed = (isBroken && isVentBlocked) ? (heatRiseSpeed * 2) : heatRiseSpeed;
             currentTemp += currentSpeed * Time.deltaTime;
         }
+
+        if (isBroken || isVentBlocked)
+        {
+            currentTemp += currentSpeed * Time.deltaTime;
+            arcticController.UpdateTemperature(currentTemp);
+        }
+
 
         // --- THE NEW SPIN LOGIC ---
         if (isBroken)
