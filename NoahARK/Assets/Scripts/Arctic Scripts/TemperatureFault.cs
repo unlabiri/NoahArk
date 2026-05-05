@@ -1,6 +1,6 @@
 using UnityEngine;
-using TMPro; // Needed to talk to the Text screen
-using Valve.VR.InteractionSystem; // Needed to read the SteamVR wheel
+using TMPro;
+using Valve.VR.InteractionSystem;
 using UnityEngine.Events;
 
 public class TemperatureFault : MonoBehaviour
@@ -17,20 +17,45 @@ public class TemperatureFault : MonoBehaviour
     public TextMeshPro textScreen;
     public LinearMapping valveMapping;
 
+    [Header("Valve Settings (NEW)")]
+    [Tooltip("How much total movement is needed to fix the pipe. 1.0 = one full mapping traversal.")]
+    public float requiredSpinAmount = 1.0f;
+    private float lastValveValue;
+    private float accumulatedSpin = 0f;
+
+    [Header("Vent Integration")]
+    public SimpleDig ventFault;
+
     [Header("Events")]
     public UnityEvent onFaultTriggered;
     public UnityEvent onFaultFixed;
 
     void Update()
     {
+        bool isVentBlocked = (ventFault != null && ventFault.isBroken);
+
+        if (isBroken || isVentBlocked)
+        {
+            float currentSpeed = (isBroken && isVentBlocked) ? (heatRiseSpeed * 2) : heatRiseSpeed;
+            currentTemp += currentSpeed * Time.deltaTime;
+        }
+
+        // --- THE NEW SPIN LOGIC ---
         if (isBroken)
         {
-            currentTemp += heatRiseSpeed * Time.deltaTime;
+            // 1. Calculate how much the wheel moved this frame (Absolute value ignores left/right)
+            float spinDelta = Mathf.Abs(valveMapping.value - lastValveValue);
 
-            // UPDATED: Now requires 99% completion to prevent cheating the 2.5 spins!
-            if (valveMapping.value >= 0.99f || valveMapping.value <= 0.01f)
+            // 2. Add that movement to our total
+            accumulatedSpin += spinDelta;
+
+            // 3. Save current position for the next frame
+            lastValveValue = valveMapping.value;
+
+            // 4. Did they spin it enough?
+            if (accumulatedSpin >= requiredSpinAmount)
             {
-                FixFault();
+                FixPipeFault();
             }
         }
 
@@ -42,33 +67,52 @@ public class TemperatureFault : MonoBehaviour
         if (isBroken) return;
 
         isBroken = true;
-        valveMapping.value = 0.5f; // NEW: Start the wheel perfectly in the middle
 
-        Debug.Log("AC Fault! Temperature rising!");
+        // Reset our spin counters to zero
+        accumulatedSpin = 0f;
+        lastValveValue = valveMapping.value; // Start tracking from wherever it's currently resting
+
+        Debug.Log("AC Fault! Coolant Pipe leaking. Temperature rising!");
         onFaultTriggered.Invoke();
     }
 
-    private void FixFault()
+    private void FixPipeFault()
     {
         isBroken = false;
-        currentTemp = safeTemp; // Instantly drop the temp back to normal
         Debug.Log("AC Repaired! Coolant flushed.");
+
+        CheckIfFullySafe();
         onFaultFixed.Invoke();
+    }
+
+    public void VentFixedFromExternal()
+    {
+        Debug.Log("Air Vent cleared of snow!");
+        CheckIfFullySafe();
+    }
+
+    private void CheckIfFullySafe()
+    {
+        bool isVentBlocked = (ventFault != null && ventFault.isBroken);
+
+        if (!isBroken && !isVentBlocked)
+        {
+            currentTemp = safeTemp;
+            Debug.Log("All AC systems nominal. Temperature restored.");
+        }
     }
 
     private void UpdateScreenVisuals()
     {
-        // Update the text to show the exact whole number
         textScreen.text = Mathf.RoundToInt(currentTemp).ToString() + "°F";
 
-        // Change screen color to red if it gets above freezing (32 F)
         if (currentTemp > 32f)
         {
-            textScreen.color = Color.red;
+            textScreen.color = Color.yellow;
         }
         else
         {
-            textScreen.color = Color.cyan;
+            textScreen.color = Color.red;
         }
     }
 }

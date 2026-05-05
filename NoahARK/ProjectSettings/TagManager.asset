@@ -10,6 +10,8 @@ TagManager:
   - Herbicide
   - Coral
   - AquaCrystal
+  - Shovel
+  - Floor
   layers:
   - Default
   - TransparentFX

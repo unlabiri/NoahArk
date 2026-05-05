@@ -2,61 +2,52 @@ using UnityEngine;
 
 public class EnvironmentalMelter : MonoBehaviour
 {
-    [Header("The AC System")]
-    [Tooltip("Drag your Coolant Pipe here so it knows the current temp.")]
     public TemperatureFault tempSystem;
+    public float slightMeltTemp = 32f;
+    public float criticalMeltTemp = 50f;
 
-    [Header("Melting Thresholds")]
-    public float slightMeltTemp = 32f; // Freezing point
-    public float criticalMeltTemp = 50f; // Dangerously hot
+    [Header("Model Data")]
+    public Mesh healthyMesh;
+    public Mesh meltyMesh;
+    public Mesh veryMeltyMesh;
 
-    [Header("The 3D Models")]
-    public GameObject healthyModel;
-    public GameObject slightlyMeltedModel;
-    public GameObject criticallyMeltedModel;
+    [Header("Material Data (Optional)")]
+    public Material healthyMat;
+    public Material meltyMat;
+    public Material veryMeltyMat;
 
-    // We track the state so we don't unnecessarily swap models every single frame
+    private MeshFilter meshFilter;
+    private MeshRenderer meshRenderer;
     private int currentState = -1;
+
+    void Start()
+    {
+        meshFilter = GetComponent<MeshFilter>();
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
 
     void Update()
     {
         if (tempSystem == null) return;
 
-        float currentTemp = tempSystem.currentTemp;
-        int targetState = 0; // Default to Healthy (0)
+        int targetState = 0;
+        if (tempSystem.currentTemp >= criticalMeltTemp) targetState = 2;
+        else if (tempSystem.currentTemp >= slightMeltTemp) targetState = 1;
 
-        // Determine which state we SHOULD be in based on the temperature
-        if (currentTemp >= criticalMeltTemp)
-        {
-            targetState = 2; // Critical
-        }
-        else if (currentTemp >= slightMeltTemp)
-        {
-            targetState = 1; // Slight Melt
-        }
-
-        // If the state needs to change, swap the 3D models!
-        if (targetState != currentState)
-        {
-            SwapModels(targetState);
-        }
+        if (targetState != currentState) SwapModel(targetState);
     }
 
-    private void SwapModels(int newState)
+    void SwapModel(int state)
     {
-        currentState = newState;
+        currentState = state;
+        if (state == 0) Apply(healthyMesh, healthyMat);
+        else if (state == 1) Apply(meltyMesh, meltyMat);
+        else if (state == 2) Apply(veryMeltyMesh, veryMeltyMat);
+    }
 
-        // 1. Turn every model OFF
-        if (healthyModel != null) healthyModel.SetActive(false);
-        if (slightlyMeltedModel != null) slightlyMeltedModel.SetActive(false);
-        if (criticallyMeltedModel != null) criticallyMeltedModel.SetActive(false);
-
-        // 2. Turn only the correct model ON
-        if (newState == 0 && healthyModel != null)
-            healthyModel.SetActive(true);
-        else if (newState == 1 && slightlyMeltedModel != null)
-            slightlyMeltedModel.SetActive(true);
-        else if (newState == 2 && criticallyMeltedModel != null)
-            criticallyMeltedModel.SetActive(true);
+    void Apply(Mesh m, Material mat)
+    {
+        if (m != null) meshFilter.mesh = m;
+        if (mat != null) meshRenderer.material = mat;
     }
 }
