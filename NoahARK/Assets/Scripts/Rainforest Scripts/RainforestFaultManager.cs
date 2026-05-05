@@ -68,6 +68,7 @@ public class RainforestFaultManager : MonoBehaviour
     public void HandleFaultTrigger(WakeCycleScheduledEvent e)
     {
         if (e.targetBiome != "Rainforest") return;
+        if (biomeState.health == BiomeHealthState.Extinct) return;
         int roll = Random.Range(1, 4); // 1, 2, or 3 — note Unity's Range is exclusive on the max
 
         // when a fault is triggered play an annoucement

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,13 @@ public class AquaFaultManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int faultsPerDay = 2;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource faultAlertSource;
+    [SerializeField] private AudioClip faultAlertClip;
+    [SerializeField] private float alertDelay = 10f;
+
     private List<AquaFaultBase> activeFaults = new();
+    private bool alertPlayedThisCycle = false;  // gates it to once per day
 
     private void OnEnable()
     {
@@ -46,6 +53,7 @@ public class AquaFaultManager : MonoBehaviour
         }
 
         activeFaults.Clear();
+        alertPlayedThisCycle = false; // reset for the next day
     }
 
     private void SpawnFaults()
@@ -63,6 +71,28 @@ public class AquaFaultManager : MonoBehaviour
             fault.Activate();
             activeFaults.Add(fault);
             Debug.Log($"[AquaFaultManager] Activated: {fault.name}");
+        }
+
+        // Only start the alert coroutine once per day, on the first spawn batch
+        if (!alertPlayedThisCycle && activeFaults.Count > 0)
+        {
+            alertPlayedThisCycle = true;
+            StartCoroutine(PlayFaultAlertDelayed());
+        }
+    }
+
+    private IEnumerator PlayFaultAlertDelayed()
+    {
+        yield return new WaitForSeconds(alertDelay);
+
+        if (faultAlertSource != null && faultAlertClip != null)
+        {
+            faultAlertSource.PlayOneShot(faultAlertClip);
+            Debug.Log("[AquaFaultManager] Fault alert audio played.");
+        }
+        else
+        {
+            Debug.LogWarning("[AquaFaultManager] faultAlertSource or faultAlertClip is not assigned!");
         }
     }
 }
