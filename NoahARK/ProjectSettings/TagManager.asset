@@ -9,6 +9,7 @@ TagManager:
   - InvasiveSpecies
   - Herbicide
   - Coral
+  - Crystal
   layers:
   - Default
   - TransparentFX
